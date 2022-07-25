@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	import type { InferQueryOutput } from '$lib/trpc/client';
 	import trpc from '$lib/trpc/client';
 	import { delay, getBundlePrice } from '$lib/utility';
+	import { account } from '$store/account';
 	import { v4 as uuidv4 } from 'uuid';
 
 	export let label: string;
@@ -47,6 +49,11 @@
 					isPurchasing = true;
 
 					try {
+						if (!$account) {
+							const destination = $page.url.pathname;
+							goto(`/login?destination=${destination}`);
+							throw new Error('Not logged in');
+						}
 						if (bundle) {
 							const success = await trpc.query('account.purchaseBundle', {
 								id: bundle.id

@@ -5,6 +5,7 @@
 	import { delay } from '$lib/utility';
 	import type { Account } from '$lib/account/Account';
 	import { account } from '$store/account';
+	import Loading from '$lib/components/Loading/Loading.svelte';
 
 	export let destination = $page.url.pathname;
 
@@ -26,5 +27,5 @@
 {#if authenticated === true}
 	<slot {account} />
 {:else if authenticated === undefined}
-	<span>Loading....</span>
+	<span><Loading /></span>
 {/if}

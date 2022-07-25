@@ -6,6 +6,7 @@
 	import { myBundles } from '$store/account';
 	import { minuteFormat } from '$lib/utility';
 	import BundleActionButton from '$lib/components/Bundle/BundleActionButton.svelte';
+	import Loading from '$lib/components/Loading/Loading.svelte';
 
 	let id = parseInt($page.params.id);
 
@@ -163,5 +164,5 @@
 		{/if}
 	{/if}
 {:else}
-	<div>Loading...</div>
+	<div><Loading /></div>
 {/if}

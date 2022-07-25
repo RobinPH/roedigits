@@ -46,7 +46,7 @@
 {#if bundle}
 	<div class="hero bg-base-200 py-24">
 		<div class="w-full px-24 sm:px-12 md:px-72">
-			<h1 class="text-5xl font-bold">Go from Begineer to Expert</h1>
+			<h1 class="text-5xl font-bold text-center">Go from Begineer to Expert</h1>
 			<p class="py-6 text-center">
 				{bundle.description}
 			</p>

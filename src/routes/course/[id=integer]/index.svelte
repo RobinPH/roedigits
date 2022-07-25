@@ -6,6 +6,7 @@
 	import type { Account } from '$lib/account/Account';
 	import { goto } from '$app/navigation';
 	import { minuteFormat } from '$lib/utility';
+	import Loading from '$lib/components/Loading/Loading.svelte';
 
 	export let id = parseInt($page.params.id);
 
@@ -57,6 +58,6 @@
 			</div>
 		</div>
 	{:else if hasAccess === undefined}
-		Loading...
+		<Loading />
 	{/if}
 </Authenticated>

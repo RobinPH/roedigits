@@ -1,12 +1,13 @@
 <script lang="ts">
 	import BundlePrice from '$lib/components/Bundle/BundlePrice.svelte';
+	import Loading from '$lib/components/Loading/Loading.svelte';
 	import type { InferQueryOutput } from '$lib/trpc/client';
 	import trpc from '$lib/trpc/client';
 	import { myBundles } from '$store/account';
 	import { onMount } from 'svelte';
 
-	let bundles: InferQueryOutput<'bundle.getAll'> = new Array();
-	let shownBundles: InferQueryOutput<'bundle.getAll'> = new Array();
+	let bundles: InferQueryOutput<'bundle.getAll'>;
+	let shownBundles: InferQueryOutput<'bundle.getAll'>;
 
 	onMount(async () => {
 		bundles = (await trpc.query('bundle.getAll'))
@@ -19,29 +20,33 @@
 	});
 </script>
 
-<div class="py-20 px-24 sm:px-12 md:px-32">
-	{#if shownBundles.length > 0}
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-			{#each shownBundles as bundle (bundle.id)}
-				<BundlePrice {bundle} />
-			{/each}
-		</div>
-		{#if shownBundles.length < bundles.length}
-			<div class="mt-4 w-full text-center">
-				<button
-					class="btn btn-primary w-full md:w-48"
-					on:click={() => {
-						shownBundles = bundles;
-					}}
-				>
-					Show All
-				</button>
+{#if bundles}
+	<div class="py-20 px-24 sm:px-12 md:px-32">
+		{#if shownBundles.length > 0}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+				{#each shownBundles as bundle (bundle.id)}
+					<BundlePrice {bundle} />
+				{/each}
+			</div>
+			{#if shownBundles.length < bundles.length}
+				<div class="mt-4 w-full text-center">
+					<button
+						class="btn btn-primary w-full md:w-48"
+						on:click={() => {
+							shownBundles = bundles;
+						}}
+					>
+						Show All
+					</button>
+				</div>
+			{/if}
+		{:else}
+			<div>
+				<h1 class="text-5xl font-bold py-5">You have purchased all items</h1>
+				<p class="text-lg">No more items available to purchase</p>
 			</div>
 		{/if}
-	{:else}
-		<div>
-			<h1 class="text-5xl font-bold py-5">You have purchased all items</h1>
-			<p class="text-lg">No more items available to purchase</p>
-		</div>
-	{/if}
-</div>
+	</div>
+{:else}
+	<Loading />
+{/if}
