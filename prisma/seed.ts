@@ -146,7 +146,7 @@ const createCourse = async (bundle: Bundle, name: string, image: string) => {
 		}
 	});
 
-	await createCurricula(course, Math.random() * 5 + 2);
+	// await createCurricula(course, Math.random() * 5 + 2);
 
 	return course;
 };

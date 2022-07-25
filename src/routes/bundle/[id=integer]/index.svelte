@@ -91,7 +91,7 @@
 			</div>
 		</Editable>
 	</div>
-	<!-- <div class="hero bg-blue-100 px-24 sm:px-12 md:px-48 py-24">
+	<div class="hero bg-blue-100 px-24 sm:px-12 md:px-48 py-24">
 		<div class="flex w-full space-x-5">
 			<div class="w-full">
 				<Editable
@@ -151,7 +151,7 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 	{#if bundle.details}
 		<!-- <div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
 			<div class="w-full">
