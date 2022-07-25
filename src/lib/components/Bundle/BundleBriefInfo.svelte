@@ -9,8 +9,8 @@
 
 <a
 	sveltekit:reload
-	class={`card card-compact w-full bg-base-100 shadow-xl duration-500 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03] hover:cursor-pointer ${
-		owned ? 'border-warning border-4' : ''
+	class={`card card-compact w-full bg-base-100 shadow-xl duration-500 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03] hover:cursor-pointer border-8  ${
+		owned ? 'border-warning' : 'border-white'
 	}`}
 	href={`/bundle/${bundle.id}`}
 >
@@ -19,7 +19,7 @@
 	{/if}
 
 	<figure><img src={bundle.image} alt="course-thumbnail" /></figure>
-	<div class="card-body">
+	<div class={`card-body ${owned ? 'bg-warning' : ''}`}>
 		<h2 class="card-title">{bundle.name}</h2>
 		<p>{bundle.description}</p>
 

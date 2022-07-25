@@ -26,7 +26,7 @@
 </script>
 
 {#if $isEditting && authenticated}
-	<textarea {id} bind:value on:change={handleChange} on:blur={handleChange} />
+	<textarea {id} class="text-black" bind:value on:change={handleChange} on:blur={handleChange} />
 {:else}
 	{value}
 {/if}

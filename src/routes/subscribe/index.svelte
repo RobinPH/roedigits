@@ -21,7 +21,7 @@
 </script>
 
 {#if bundles}
-	<div class="py-20 px-24 sm:px-12 md:px-32">
+	<div class="py-20 px-24 sm:px-12 md:px-32 bg-zinc-800">
 		{#if shownBundles.length > 0}
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{#each shownBundles as bundle (bundle.id)}
@@ -41,7 +41,7 @@
 				</div>
 			{/if}
 		{:else}
-			<div>
+			<div class="text-white">
 				<h1 class="text-5xl font-bold py-5">You have purchased all items</h1>
 				<p class="text-lg">No more items available to purchase</p>
 			</div>

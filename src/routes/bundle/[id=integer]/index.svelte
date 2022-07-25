@@ -57,7 +57,7 @@
 			<div>Discount: <EditableTextInput id="discount" /></div>
 		</div>
 	</Editable>
-	<div class="hero min-h-screen bg-base-200 px-24 sm:px-12 md:px-48">
+	<div class="hero min-h-screen bg-zinc-800 px-24 sm:px-12 md:px-48 text-white">
 		<Editable
 			{id}
 			query="bundle.updateBundle"
@@ -91,7 +91,7 @@
 			</div>
 		</Editable>
 	</div>
-	<div class="hero bg-blue-100 px-24 sm:px-12 md:px-48 py-24">
+	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-48 py-24">
 		<div class="flex w-full space-x-5">
 			<div class="w-full">
 				<Editable
@@ -187,7 +187,7 @@
 				</Editable>
 			</div>
 		</div> -->
-		<div class="hero bg-yellow-100 px-24 sm:px-12 md:px-72 py-24">
+		<div class="hero bg-zinc-800 text-white px-24 sm:px-12 md:px-72 py-24">
 			<div class="w-full">
 				<h1 class="text-xl font-bold">What You'l Learn...</h1>
 				<Editable
@@ -222,7 +222,7 @@
 			</div>
 		</div>
 	{/if}
-	<div class="hero bg-base-200 px-24 sm:px-12 md:px-72 py-24">
+	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-72 py-24">
 		<div class="hero-content text-center">
 			<div class="max-w-md">
 				<h1 class="text-2xl font-bold py-5">Join {uniqueOwners} happy students!</h1>
@@ -230,7 +230,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="hero bg-red-200 px-24 sm:px-12 md:px-72 py-24">
+	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 text-white">
 		<div class="w-full">
 			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
 			<Biography />

@@ -44,9 +44,9 @@
 </script>
 
 {#if bundle}
-	<div class="hero bg-base-200 py-24">
+	<div class="hero bg-zinc-800 py-24 text-white">
 		<div class="w-full px-24 sm:px-12 md:px-72">
-			<h1 class="text-5xl font-bold text-center">Go from Begineer to Expert</h1>
+			<h1 class="text-5xl font-bold text-center">Go from Beginner to Expert</h1>
 			<p class="py-6 text-center">
 				{bundle.description}
 			</p>
@@ -56,8 +56,8 @@
 		</div>
 	</div>
 
-	<div class="hero bg-red-200">
-		<div class="w-full bg-green-100 px-24 sm:px-12 md:px-72 py-24">
+	<div class="hero bg-zinc-300">
+		<div class="w-full  px-24 sm:px-12 md:px-72 py-24">
 			<div><h1 class="text-2xl font-bold py-5">Similar Items</h1></div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{#each similarBundles.slice(0, 3) as bundle (bundle.id)}

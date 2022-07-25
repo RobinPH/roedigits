@@ -9,7 +9,7 @@
 </script>
 
 {#if bundle}
-	<div class="card bg-base-100 shadow-xl mx-auto w-full ">
+	<div class="card bg-base-100 shadow-xl mx-auto w-full text-black">
 		<div class="card-body text-center">
 			{#if isSingle}
 				<p class="text-2xl font-bold">

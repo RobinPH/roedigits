@@ -31,9 +31,9 @@
 </script>
 
 {#if bundles}
-	<div class="py-14">
+	<div class="py-14 bg-zinc-800">
 		<div class="px-24 sm:px-4 md:px-48">
-			<h1 class="text-5xl font-bold py-5">Bundles</h1>
+			<h1 class="text-5xl font-bold py-5 text-white">Bundles</h1>
 			{#if packages.length > 0}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{#each packages as bundle (bundle.id)}
@@ -42,12 +42,12 @@
 				</div>
 			{:else}
 				<div class="text-left">
-					<p class="text-2xl">No bundles available.</p>
+					<p class="text-2xl text-white">No bundles available.</p>
 				</div>{/if}
 		</div>
 
 		<div class="px-24 sm:px-4 md:px-48">
-			<h1 class="text-5xl font-bold py-5">Courses</h1>
+			<h1 class="text-5xl font-bold py-5 text-white">Courses</h1>
 			{#if singleCourse.length > 0}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{#each singleCourse as bundle (bundle.id)}
@@ -56,7 +56,7 @@
 				</div>
 			{:else}
 				<div class="text-left">
-					<p class="text-2xl">No courses available.</p>
+					<p class="text-2xl text-white">No courses available.</p>
 				</div>
 			{/if}
 		</div>

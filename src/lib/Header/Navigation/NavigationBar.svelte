@@ -40,7 +40,7 @@
 
 <!-- svelte-ignore a11y-missing-attribute -->
 
-<div class="navbar bg-base-100 lg:px-44">
+<div class="navbar bg-zinc-900 text-white lg:px-44">
 	<div class="navbar-start">
 		<div class="dropdown">
 			<label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -97,7 +97,7 @@
 		<ul class="menu menu-horizontal p-0 space-x-2 invisible lg:visible">
 			{#each routes as route (route.key)}
 				{#if route.path}
-					<a class="btn btn-ghost rounded-btn" href={route.path}>{route.label}</a>
+					<a class="btn btn-ghost hover:bg-warning rounded-btn" href={route.path}>{route.label}</a>
 				{:else if route.sub}
 					<div class="dropdown">
 						<label tabindex="0" class="btn btn-ghost rounded-btn"
@@ -113,10 +113,10 @@
 						>
 						<ul
 							tabindex="0"
-							class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+							class="menu dropdown-content p-2 shadow rounded-box w-52 mt-4 bg-zinc-900"
 						>
 							{#each route.sub as sub (sub.key)}
-								<li><a href={sub.path} class="w-full">{sub.label}</a></li>
+								<li><a href={sub.path} class="w-full hover:bg-warning">{sub.label}</a></li>
 							{/each}
 						</ul>
 					</div>
@@ -149,10 +149,11 @@
 				</button>
 				<ul
 					tabindex="0"
-					class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+					class="menu menu-compact bg-zinc-900 dropdown-content mt-3 p-2 shadow rounded-box w-52"
 				>
 					<li>
 						<button
+							class="hover:bg-warning"
 							on:click={() => {
 								goto('/myBundles');
 							}}>My Courses</button
@@ -160,6 +161,7 @@
 					</li>
 					<li>
 						<button
+							class="hover:bg-warning"
 							on:click={() => {
 								account.set(null);
 								goto('/');
@@ -170,7 +172,7 @@
 			</div>
 		{:else}
 			<button class="btn btn-ghost" on:click={() => goto('/login')}>Login</button>
-			<button class="btn btn-primary" on:click={() => goto('/register')}>Register</button>
+			<button class="btn btn-warning" on:click={() => goto('/register')}>Register</button>
 		{/if}
 	</div>
 </div>

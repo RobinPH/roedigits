@@ -27,5 +27,12 @@
 
 <img src={value} alt="editable" {...$$props} />
 {#if $isEditting && authenticated}
-	<input {id} type="text" bind:value on:change={handleChange} on:blur={handleChange} />
+	<input
+		{id}
+		type="text"
+		class="text-black"
+		bind:value
+		on:change={handleChange}
+		on:blur={handleChange}
+	/>
 {/if}

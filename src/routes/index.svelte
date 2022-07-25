@@ -28,7 +28,7 @@
 		</div>
 	</div>
 </div> -->
-<div class="hero min-h-screen" style="background-image: url(/images/bg-3.jpg);">
+<div class="hero min-h-screen bg-[url(/images/bg-3.jpg)]">
 	<div class="hero-overlay bg-opacity-80" />
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-md">
@@ -38,7 +38,7 @@
 				willing to learn it. Founded in 2022, RoeDigits set out itself to be a leading educational
 				website that teaches different topics in Mathematics to anyone who wants to learn.
 			</p>
-			<a class="btn btn-primary" href="/register">Register Now</a>
+			<a class="btn btn-warning" href="/register">Register Now</a>
 		</div>
 	</div>
 </div>
@@ -73,7 +73,7 @@
 		<div>
 			<h1 class="text-7xl font-bold">Join {uniqueOwners} Happy Students</h1>
 			<p class="text-lg py-6">
-				<a class="btn bg-black" href="/register">REGISTER NOW</a>
+				<a class="btn btn-warning font-bold" href="/register">REGISTER NOW</a>
 			</p>
 		</div>
 	</div>

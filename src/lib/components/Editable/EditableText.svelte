@@ -26,7 +26,14 @@
 </script>
 
 {#if $isEditting && authenticated}
-	<input type="text" {id} bind:value on:change={handleChange} on:blur={handleChange} />
+	<input
+		type="text"
+		class="text-black"
+		{id}
+		bind:value
+		on:change={handleChange}
+		on:blur={handleChange}
+	/>
 {:else}
 	{value}
 {/if}
