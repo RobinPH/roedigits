@@ -232,7 +232,7 @@
 	<div class="hero bg-red-200 px-24 sm:px-12 md:px-72 py-24">
 		<div class="w-full">
 			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
-			<Biography />
+			<!-- <Biography /> -->
 		</div>
 	</div>
 	{#if bundle && false}
