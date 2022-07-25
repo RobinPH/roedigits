@@ -7,13 +7,6 @@
 	import { minuteFormat } from '$lib/utility';
 	import BundleActionButton from '$lib/components/Bundle/BundleActionButton.svelte';
 	import Loading from '$lib/components/Loading/Loading.svelte';
-	import Editable from '$lib/components/Editable/Editable.svelte';
-	import * as Yup from 'yup';
-	import EditableTextAreaInput from '$lib/components/Editable/EditableTextArea.svelte';
-	import EditableTextInput from '$lib/components/Editable/EditableText.svelte';
-	import EditableImage from '$lib/components/Editable/EditableImage.svelte';
-	import EditableText from '$lib/components/Editable/EditableText.svelte';
-	import EditableList from '$lib/components/Editable/EditableList.svelte';
 
 	let id = parseInt($page.params.id);
 
@@ -39,7 +32,7 @@
 
 {#if bundle}
 	<div class="bg-gray-300 p-5">
-		<Editable
+		<!-- <Editable
 			{id}
 			hidden={true}
 			query="bundle.updateBundle"
@@ -54,10 +47,10 @@
 		>
 			<div>Price: <EditableTextInput id="price" /></div>
 			<div>Discount: <EditableTextInput id="discount" /></div>
-		</Editable>
+		</Editable> -->
 	</div>
 	<div class="hero min-h-screen bg-base-200 px-24 sm:px-12 md:px-48">
-		<Editable
+		<!-- <Editable
 			{id}
 			query="bundle.updateBundle"
 			initialValues={{
@@ -88,12 +81,12 @@
 					<BundleActionButton {bundle} {owned} {isSingle} />
 				</div>
 			</div>
-		</Editable>
+		</Editable> -->
 	</div>
 	<div class="hero bg-blue-100 px-24 sm:px-12 md:px-48 py-24">
 		<div class="flex w-full space-x-5">
 			<div class="w-full">
-				<Editable
+				<!-- <Editable
 					id={bundle.details.id}
 					query="bundle.updateBundleDetails"
 					initialValues={{
@@ -109,7 +102,7 @@
 					<p class="py-6">
 						<EditableTextAreaInput id="description" />
 					</p>
-				</Editable>
+				</Editable> -->
 				<BundleActionButton {bundle} {owned} {isSingle} />
 			</div>
 			<div class="w-full justify-end hidden sm:block">
@@ -174,7 +167,7 @@
 		<div class="hero bg-yellow-100 px-24 sm:px-12 md:px-72 py-24">
 			<div class="w-full">
 				<h1 class="text-xl font-bold">What You'l Learn...</h1>
-				<Editable
+				<!-- <Editable
 					id={bundle.details.id}
 					query="bundle.updateBundleDetails"
 					initialValues={{
@@ -202,7 +195,7 @@
 							<div><EditableText id={`whatYouWillLearn.${i}`} /></div>
 						</div>
 					{/each}
-				</Editable>
+				</Editable> -->
 			</div>
 		</div>
 	{/if}
