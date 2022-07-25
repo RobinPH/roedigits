@@ -13,7 +13,7 @@
 	}[];
 
 	onMount(async () => {
-		bundles = await trpc.query('bundle.getAll');
+		// bundles = await trpc.query('bundle.getAll');
 	});
 </script>
 
