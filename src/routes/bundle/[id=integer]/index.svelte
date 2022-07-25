@@ -89,11 +89,15 @@
 						<EditableImage id="image" class="rounded-lg shadow-2xl" alt="course-thumbnail" />
 					</div>
 					<div class="my-auto pl-10" in:fly={{ x: 200, duration: 2000 }}>
-						<h1 class="text-5xl font-bold"><EditableTextInput id="name" /></h1>
-						<p class="py-6">
+						<h1 class="text-5xl font-bold" in:fly={{ x: 200, duration: 2500 }}>
+							<EditableTextInput id="name" />
+						</h1>
+						<p class="py-6" in:fly={{ x: 200, duration: 3000 }}>
 							<EditableTextAreaInput id="description" />
 						</p>
-						<BundleActionButton {bundle} {owned} {isSingle} />
+						<div in:fly={{ x: 200, duration: 3500 }}>
+							<BundleActionButton {bundle} {owned} {isSingle} />
+						</div>
 					</div>
 				</div>
 			</Editable>
@@ -115,12 +119,17 @@
 							description: Yup.string().required('Required')
 						})}
 					>
-						<h1 class="text-5xl font-bold"><EditableTextInput id="title" /></h1>
-						<p class="py-6">
+						<h1 class="text-5xl font-bold" in:fly={{ x: -200, duration: 2500 }}>
+							<EditableTextInput id="title" />
+						</h1>
+						<p class="py-6" in:fly={{ x: -200, duration: 3000 }}>
 							<EditableTextAreaInput id="description" />
 						</p>
 					</Editable>
-					<BundleActionButton {bundle} {owned} {isSingle} />
+
+					<div in:fly={{ x: -200, duration: 3500 }}>
+						<BundleActionButton {bundle} {owned} {isSingle} />
+					</div>
 				</div>
 				<div class="w-full justify-end hidden sm:block" in:fly={{ x: 200, duration: 2000 }}>
 					<div
@@ -215,7 +224,7 @@
 					>
 						<EditableList id="whatYouWillLearn" />
 						{#each bundle.details.whatYouWillLearn as whatYouWillLearn, i}
-							<div class="flex justify-start">
+							<div class="flex justify-start" in:fly={{ x: -200, duration: 2500 + 500 * i }}>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									class="h-5 w-5 my-auto"
@@ -228,7 +237,9 @@
 										clip-rule="evenodd"
 									/>
 								</svg>
-								<div><EditableText id={`whatYouWillLearn.${i}`} /></div>
+								<div>
+									<EditableText id={`whatYouWillLearn.${i}`} />
+								</div>
 							</div>
 						{/each}
 					</Editable>
