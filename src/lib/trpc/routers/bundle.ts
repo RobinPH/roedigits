@@ -26,8 +26,7 @@ const bundle = createRouter()
 								}
 							}
 						}
-					},
-					details: true
+					}
 				}
 			});
 		}
