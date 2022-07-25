@@ -2,7 +2,6 @@
 	import trpc, { type InferQueryOutput } from '$lib/trpc/client';
 
 	import { account } from '$store/account';
-	import { AccountType } from '@prisma/client';
 	import { getContext, onMount, setContext } from 'svelte';
 	import { createForm } from 'svelte-forms-lib';
 	import { writable } from 'svelte/store';
@@ -27,7 +26,7 @@
 	const isEditting = writable(false);
 
 	const authenticate = () => {
-		return !!$account && $account.type === AccountType.ADMIN;
+		return !!$account && $account.type === 'ADMIN';
 	};
 
 	onMount(async () => {

@@ -3,8 +3,6 @@
 
 	import { account } from '$store/account';
 
-	import { AccountType } from '@prisma/client';
-
 	import { getContext, onMount } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
@@ -17,7 +15,7 @@
 	let authenticated: boolean | undefined;
 
 	const authenticate = () => {
-		return !!$account && $account.type === AccountType.ADMIN;
+		return !!$account && $account.type === 'ADMIN';
 	};
 
 	onMount(async () => {
