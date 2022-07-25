@@ -68,7 +68,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="hero min-h-screen bg-zinc-300">
 	<div class="hero-content w-full px-24 text-center ">
 		<div>
