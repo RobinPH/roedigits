@@ -62,6 +62,7 @@ const createBundles = async () => {
 
 const createBundle = async (name: string, image: string, featuresCount: number = 5) => {
 	const features = await createFeatures(featuresCount);
+	const details = await createDetails();
 
 	const bundle = await prisma.bundle.create({
 		data: {
@@ -76,11 +77,14 @@ const createBundle = async (name: string, image: string, featuresCount: number =
 						id: feature.id
 					};
 				})
+			},
+			details: {
+				connect: {
+					id: details.id
+				}
 			}
 		}
 	});
-
-	await createDetail(bundle);
 
 	return bundle;
 };
@@ -250,7 +254,7 @@ const createFeatures = async (count: number = 5) => {
 	);
 };
 
-const createDetail = async (bundle: Bundle) => {
+const createDetails = async () => {
 	return await prisma.details.create({
 		data: {
 			title: faker.lorem.sentence(),
@@ -260,12 +264,7 @@ const createDetail = async (bundle: Bundle) => {
 				.map(() => faker.lorem.sentence()),
 			whatYouWillBeAbleTo: Array(Math.round(Math.random() * 7 + 3))
 				.fill(0)
-				.map(() => faker.lorem.sentence()),
-			bundle: {
-				connect: {
-					id: bundle.id
-				}
-			}
+				.map(() => faker.lorem.sentence())
 		}
 	});
 };
