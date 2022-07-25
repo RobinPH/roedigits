@@ -88,7 +88,7 @@
 				{/each}
 			</ul>
 		</div>
-		<a class="btn btn-ghost normal-case text-xl" href="/">
+		<a class="btn btn-ghost normal-case text-xl hover:bg-warning" href="/">
 			<div class="w-10 rounded-full pr-2">
 				<img src="/images/logo.png" alt="roedigits-logo" class="w-auto" />
 			</div>
@@ -99,8 +99,8 @@
 				{#if route.path}
 					<a class="btn btn-ghost hover:bg-warning rounded-btn" href={route.path}>{route.label}</a>
 				{:else if route.sub}
-					<div class="dropdown">
-						<label tabindex="0" class="btn btn-ghost rounded-btn"
+					<div class="dropdown ">
+						<label tabindex="0" class="btn btn-ghost rounded-btn hover:bg-warning"
 							>{route.label}
 							<svg
 								class="fill-current"
@@ -128,7 +128,7 @@
 	<div class="navbar-end space-x-2">
 		{#if $account}
 			<div class="dropdown dropdown-end">
-				<button class="btn btn-ghost">
+				<button class="btn btn-ghost hover:bg-warning">
 					<p class="px-2">{$account.email}</p>
 					<div class="w-10 rounded-full">
 						<svg
