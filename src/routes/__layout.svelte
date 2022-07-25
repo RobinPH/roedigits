@@ -6,8 +6,8 @@
 </script>
 
 <div data-theme="mytheme">
+	<Header />
 	<div class="min-h-screen bg-zinc-800">
-		<Header />
 		<slot />
 	</div>
 	<!-- <Footer /> -->

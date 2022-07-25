@@ -21,7 +21,7 @@
 	setContext('test', 'testvalue');
 </script>
 
-<div class="card w-96 bg-base-100 shadow-xl mx-auto mt-8">
+<div class="card w-96 bg-base-100 shadow-xl mx-auto">
 	<div class="card-body">
 		{#if label}
 			<h2 class="card-title">{label}</h2>

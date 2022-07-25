@@ -13,44 +13,50 @@
 	const destination = $page.url.searchParams.get('destination');
 </script>
 
-<Form
-	label="Register"
-	submitButtonLabel="Register"
-	validationSchema={Yup.object().shape({
-		email: Yup.string().required('Required'),
-		lastName: Yup.string().required('Required'),
-		firstName: Yup.string().required('Required'),
-		middleName: Yup.string(),
-		password: Yup.string().required('Required')
-	})}
-	onSubmit={async ({ email, lastName, firstName, middleName, password }) => {
-		const salt = CryptoJS.lib.WordArray.random(128 / 8).toString();
+<div class="pt-24">
+	<Form
+		label="Register"
+		submitButtonLabel="Register"
+		validationSchema={Yup.object().shape({
+			email: Yup.string().required('Required'),
+			lastName: Yup.string().required('Required'),
+			firstName: Yup.string().required('Required'),
+			middleName: Yup.string(),
+			password: Yup.string().required('Required')
+		})}
+		onSubmit={async ({ email, lastName, firstName, middleName, password }) => {
+			const salt = CryptoJS.lib.WordArray.random(128 / 8).toString();
 
-		const response = await trpc.query('account.registerUser', {
-			email,
-			lastName,
-			firstName,
-			middleName,
-			salt,
-			password: CryptoJS.SHA256(password + salt).toString()
-		});
+			const response = await trpc.query('account.registerUser', {
+				email,
+				lastName,
+				firstName,
+				middleName,
+				salt,
+				password: CryptoJS.SHA256(password + salt).toString()
+			});
 
-		if (response) {
-			token.set(response.token);
-			account.set(response.account);
+			if (response) {
+				token.set(response.token);
+				account.set(response.account);
 
-			goto(destination ?? '/');
-		}
-	}}
->
-	<Input id="email" label="Email" component={TextInput} />
-	<Input id="lastName" label="Last Name" component={TextInput} />
-	<Input id="firstName" label="First Name" component={TextInput} />
-	<Input id="middleName" label="Middle Name" component={TextInput} />
-	<Input id="password" label="Password" component={PasswordInput} />
-	<br />
-	<span>
-		Already have an account?
-		<a href={`/login${destination ? '?destination=' + destination : ''}`}>Login</a>
-	</span>
-</Form>
+				goto(destination ?? '/');
+			}
+		}}
+	>
+		<Input id="email" label="Email" component={TextInput} />
+		<Input id="lastName" label="Last Name" component={TextInput} />
+		<Input id="firstName" label="First Name" component={TextInput} />
+		<Input id="middleName" label="Middle Name" component={TextInput} />
+		<Input id="password" label="Password" component={PasswordInput} />
+		<br />
+		<div class="flex justify-center">
+			<div>
+				Already have an account?
+				<a href={`/login${destination ? '?destination=' + destination : ''}`} class="text-warning"
+					>Login</a
+				>
+			</div>
+		</div>
+	</Form>
+</div>

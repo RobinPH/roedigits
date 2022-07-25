@@ -1,4 +1,4 @@
-<div class="text-center mt-10">
+<div class="text-center pt-24">
 	<div class="lds-ring">
 		<div />
 		<div />

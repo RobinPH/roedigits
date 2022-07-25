@@ -2,6 +2,6 @@
 	import NavigationBar from '$lib/Header/Navigation/NavigationBar.svelte';
 </script>
 
-<div class="">
+<div class="absolute w-full">
 	<NavigationBar />
 </div>

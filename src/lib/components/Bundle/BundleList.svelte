@@ -36,21 +36,19 @@
 	<div class="py-14 bg-zinc-800">
 		<div class="px-24 sm:px-4 md:px-48">
 			<h1 class="text-5xl font-bold py-5 text-[#F8F7F9]">Bundles</h1>
-			<AnimatedElement>
-				{#if packages.length > 0}
-					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-						{#each packages as bundle, i (bundle.id)}
-							<div in:fly={{ y: 200, duration: 2000 + 500 * i }}>
-								<BundleBriefInfo {bundle} />
-							</div>
-						{/each}
-					</div>
-				{:else}
-					<div class="text-left">
-						<p class="text-2xl text-[#F8F7F9]">No bundles available.</p>
-					</div>
-				{/if}
-			</AnimatedElement>
+			{#if packages.length > 0}
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+					{#each packages as bundle, i (bundle.id)}
+						<div in:fly={{ y: 200, duration: 2000 + 500 * i }}>
+							<BundleBriefInfo {bundle} />
+						</div>
+					{/each}
+				</div>
+			{:else}
+				<div class="text-left">
+					<p class="text-2xl text-[#F8F7F9]">No bundles available.</p>
+				</div>
+			{/if}
 		</div>
 
 		<div class="px-24 sm:px-4 md:px-48">

@@ -60,14 +60,16 @@
 			</label>
 			<ul
 				tabindex="0"
-				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+				class="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 bg-zinc-900"
 			>
 				{#each routes as route (route.key)}
 					{#if route.path}
-						<li><a href={route.path}>{route.label}</a></li>
+						<li>
+							<a href={route.path} class="hover:bg-warning hover:text-black">{route.label}</a>
+						</li>
 					{:else if route.sub}
 						<li tabindex="0">
-							<a class="justify-between">
+							<a class="justify-between hover:bg-warning hover:text-black">
 								{route.label}
 								<svg
 									class="fill-current"
@@ -78,9 +80,14 @@
 									><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg
 								>
 							</a>
-							<ul class="p-2">
+							<ul
+								tabindex="0"
+								class="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 bg-zinc-900"
+							>
 								{#each route.sub as sub (sub.key)}
-									<li><a href={sub.path}>{sub.label}</a></li>
+									<li>
+										<a href={sub.path} class="hover:bg-warning hover:text-black">{sub.label}</a>
+									</li>
 								{/each}
 							</ul>
 						</li>
