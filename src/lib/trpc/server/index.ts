@@ -2,6 +2,7 @@ import account from '$lib/trpc/routers/account';
 import course from '$lib/trpc/routers/course';
 import bundle from '../routers/bundle';
 import category from '../routers/category';
+import instructor from '../routers/instructor';
 import { createContext as createContextFn } from './context';
 import { createRouter } from './router';
 
@@ -17,6 +18,7 @@ export const responseMeta = () => {
 };
 
 export const router = createRouter()
+	.merge('instructor.', instructor)
 	.merge('account.', account)
 	.merge('course.', course)
 	.merge('category.', category)

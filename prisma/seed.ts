@@ -17,6 +17,8 @@ const prisma = new PrismaClient();
 async function main() {
 	console.log('Starting seeding');
 
+	await createInstructor();
+
 	const bundles = await createBundles();
 
 	const courses = await createCourses(bundles);
@@ -24,6 +26,17 @@ async function main() {
 
 	console.log('Seeding completed');
 }
+
+const createInstructor = async () => {
+	return await prisma.instructor.create({
+		data: {
+			name: 'Christian Roed',
+			image: 'https://www.filepicker.io/api/file/su7jLanLRmmanlmn5RyO',
+			biography:
+				"Hi! My name is Mosh Hamedani. I'm a software engineer with two decades of experience. I've taught millions of people how to code and how to become professional software engineers through my online courses and YouTube channel. I believe coding should be fun and accessible to everyone."
+		}
+	});
+};
 
 const createBundles = async () => {
 	const bundles = [
@@ -61,7 +74,6 @@ const createBundles = async () => {
 };
 
 const createBundle = async (name: string, image: string, featuresCount: number = 5) => {
-	const features = await createFeatures(featuresCount);
 	const details = await createDetails();
 
 	const bundle = await prisma.bundle.create({
@@ -71,13 +83,9 @@ const createBundle = async (name: string, image: string, featuresCount: number =
 			description: faker.lorem.sentence(36),
 			price: 149,
 			discount: Math.random() * 100,
-			features: {
-				connect: features.map((feature) => {
-					return {
-						id: feature.id
-					};
-				})
-			},
+			features: Array(Math.round(featuresCount))
+				.fill(0)
+				.map(() => faker.lorem.words(3)),
 			details: {
 				connect: {
 					id: details.id

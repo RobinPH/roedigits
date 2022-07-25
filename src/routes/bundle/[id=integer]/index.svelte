@@ -14,6 +14,7 @@
 	import EditableImage from '$lib/components/Editable/EditableImage.svelte';
 	import EditableText from '$lib/components/Editable/EditableText.svelte';
 	import EditableList from '$lib/components/Editable/EditableList.svelte';
+	import Biography from '$lib/components/Biography/Biography.svelte';
 
 	let id = parseInt($page.params.id);
 
@@ -38,24 +39,24 @@
 </script>
 
 {#if bundle}
-	<div class="bg-gray-300 p-5">
-		<Editable
-			{id}
-			hidden={true}
-			query="bundle.updateBundle"
-			initialValues={{
-				price: bundle.price,
-				discount: bundle.discount
-			}}
-			validationSchema={Yup.object({
-				price: Yup.number().required('Required'),
-				discount: Yup.number().required('Required')
-			})}
-		>
+	<Editable
+		{id}
+		hidden={true}
+		query="bundle.updateBundle"
+		initialValues={{
+			price: bundle.price,
+			discount: bundle.discount
+		}}
+		validationSchema={Yup.object({
+			price: Yup.number().required('Required'),
+			discount: Yup.number().required('Required')
+		})}
+	>
+		<div class="bg-gray-300 p-5">
 			<div>Price: <EditableTextInput id="price" /></div>
 			<div>Discount: <EditableTextInput id="discount" /></div>
-		</Editable>
-	</div>
+		</div>
+	</Editable>
 	<div class="hero min-h-screen bg-base-200 px-24 sm:px-12 md:px-48">
 		<Editable
 			{id}
@@ -115,22 +116,37 @@
 			<div class="w-full justify-end hidden sm:block">
 				<div class="card bg-base-100 shadow-xl border-t-8 w-fit ml-auto">
 					<div class="card-body">
-						{#each bundle.features as feature (feature.id)}
-							<div>
-								<div class="flex align-middle">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="h-5 w-5 my-auto"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-										<path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-									</svg>
-									<div class="truncate font-bold my-auto">{feature.name}</div>
+						<Editable
+							{id}
+							query="bundle.updateBundle"
+							initialValues={{
+								features: bundle.features
+							}}
+							validationSchema={Yup.object({
+								x: Yup.array().of(Yup.string().required('Required'))
+							})}
+						>
+							<EditableList id="features" />
+							{#each bundle.features as feature, i (i)}
+								<div>
+									<div class="flex align-middle">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 my-auto"
+											viewBox="0 0 20 20"
+											fill="currentColor"
+										>
+											<path
+												d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+											/>
+										</svg>
+										<div class="truncate font-bold my-auto">
+											<EditableText id={`features.${i}`} />
+										</div>
+									</div>
 								</div>
-							</div>
-						{/each}
+							{/each}
+						</Editable>
 					</div>
 				</div>
 			</div>
@@ -181,7 +197,7 @@
 						whatYouWillLearn: bundle.details.whatYouWillLearn
 					}}
 					validationSchema={Yup.object({
-						title: Yup.array().of(Yup.string().required('Required'))
+						x: Yup.array().of(Yup.string().required('Required'))
 					})}
 				>
 					<EditableList id="whatYouWillLearn" />
@@ -217,25 +233,7 @@
 	<div class="hero bg-red-200 px-24 sm:px-12 md:px-72 py-24">
 		<div class="w-full">
 			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
-			<div class="flex space-x-5">
-				<div>
-					<img
-						src="https://www.filepicker.io/api/file/su7jLanLRmmanlmn5RyO"
-						class="max-w-[10rem] rounded-lg shadow-2xl"
-						alt="instructor"
-					/>
-					<p class="text-center font-bold">Christian Roed</p>
-				</div>
-				<div>
-					<p>
-						Hi! My name is Mosh Hamedani. I'm a software engineer with two decades of experience.
-						I've taught millions of people how to code and how to become professional software
-						engineers through my online courses and YouTube channel.
-					</p>
-					<br />
-					<p>I believe coding should be fun and accessible to everyone.</p>
-				</div>
-			</div>
+			<Biography />
 		</div>
 	</div>
 	{#if bundle && false}

@@ -20,12 +20,8 @@
 	let singleCourse = new Array<Bundle>();
 
 	$: if (bundles) {
-		packages = bundles
-			.filter((bundle) => bundle.courses && bundle.courses.length > 1)
-			.sort((a, b) => a.name.localeCompare(b.name));
-		singleCourse = bundles
-			.filter((bundle) => bundle.courses && bundle.courses.length === 1)
-			.sort((a, b) => a.name.localeCompare(b.name));
+		packages = bundles.filter((bundle) => bundle.courses && bundle.courses.length > 1);
+		singleCourse = bundles.filter((bundle) => bundle.courses && bundle.courses.length === 1);
 	}
 
 	onMount(async () => {

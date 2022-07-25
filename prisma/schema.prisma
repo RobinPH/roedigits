@@ -7,6 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Instructor {
+  id        Int    @id @default(autoincrement())
+  image     String @db.VarChar(1023)
+  name      String @db.VarChar(1023)
+  biography String @db.VarChar(1023)
+}
+
 model Category {
   id          Int      @id @default(autoincrement())
   image       String   @db.VarChar(1023)
@@ -23,7 +30,7 @@ model Bundle {
   createdAt   DateTime      @default(now())
   price       Decimal       @db.Decimal(13, 2)
   discount    Decimal       @db.Decimal(13, 2)
-  features    Feature[]
+  features    String[]      @db.VarChar(1023)
   details     Details       @relation(fields: [detailsId], references: [id])
   detailsId   Int           @unique
   courses     Course[]
@@ -52,11 +59,10 @@ model Details {
 }
 
 model Feature {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(1023)
-  description String   @db.VarChar(1023)
-  icon        String?  @db.VarChar(1023)
-  bundles     Bundle[]
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(1023)
+  description String  @db.VarChar(1023)
+  icon        String? @db.VarChar(1023)
 }
 
 model Curriculum {

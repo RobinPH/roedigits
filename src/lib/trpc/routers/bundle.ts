@@ -9,7 +9,6 @@ const bundle = createRouter()
 		resolve: async () => {
 			return await prisma.bundle.findMany({
 				include: {
-					features: true,
 					courses: {
 						include: {
 							bundles: {
@@ -43,7 +42,6 @@ const bundle = createRouter()
 					id: input.id
 				},
 				include: {
-					features: true,
 					courses: {
 						include: {
 							bundles: {
@@ -100,7 +98,8 @@ const bundle = createRouter()
 				description: z.string().optional(),
 				price: z.string().optional(),
 				discount: z.string().optional(),
-				image: z.string().optional()
+				image: z.string().optional(),
+				features: z.array(z.string()).optional()
 			})
 		}),
 		resolve: async ({ input }) => {
@@ -108,7 +107,20 @@ const bundle = createRouter()
 				where: {
 					id: input.id
 				},
-				data: input.data
+				data: {
+					name: input.data.name,
+					description: input.data.description,
+					price: input.data.price,
+					discount: input.data.discount,
+					image: input.data.image,
+					...(input.data.features
+						? {
+								features: {
+									set: input.data.features
+								}
+						  }
+						: {})
+				}
 			});
 		}
 	})
