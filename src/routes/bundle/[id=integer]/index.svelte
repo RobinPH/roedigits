@@ -30,11 +30,10 @@
 	onMount(async () => {
 		// bundle = await trpc.query('bundle.get', { id });
 		// myBundles.set(await trpc.query('account.myBundles'));
-		isSingle = bundle ? bundle.courses.length === 1 : false;
-
-		trpc.query('bundle.getUniqueOwnersCount').then((count) => {
-			uniqueOwners = count;
-		});
+		// isSingle = bundle ? bundle.courses.length === 1 : false;
+		// trpc.query('bundle.getUniqueOwnersCount').then((count) => {
+		// 	uniqueOwners = count;
+		// });
 	});
 </script>
 
