@@ -74,7 +74,7 @@ const createBundles = async () => {
 };
 
 const createBundle = async (name: string, image: string, featuresCount: number = 5) => {
-	const details = await createDetails();
+	// const details = await createDetails();
 
 	const bundle = await prisma.bundle.create({
 		data: {
@@ -87,8 +87,15 @@ const createBundle = async (name: string, image: string, featuresCount: number =
 				.fill(0)
 				.map(() => faker.lorem.words(3)),
 			details: {
-				connect: {
-					id: details.id
+				create: {
+					title: faker.lorem.sentence(),
+					description: faker.lorem.sentence(),
+					whatYouWillLearn: Array(Math.round(Math.random() * 7 + 3))
+						.fill(0)
+						.map(() => faker.lorem.sentence()),
+					whatYouWillBeAbleTo: Array(Math.round(Math.random() * 7 + 3))
+						.fill(0)
+						.map(() => faker.lorem.sentence())
 				}
 			}
 		}

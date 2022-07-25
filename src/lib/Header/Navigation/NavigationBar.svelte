@@ -88,7 +88,12 @@
 				{/each}
 			</ul>
 		</div>
-		<a class="btn btn-ghost normal-case text-xl" href="/">RoeDigits</a>
+		<a class="btn btn-ghost normal-case text-xl" href="/">
+			<div class="w-10 rounded-full pr-2">
+				<img src="/images/logo.png" alt="roedigits-logo" class="w-auto" />
+			</div>
+			<p>RoeDigits</p>
+		</a>
 		<ul class="menu menu-horizontal p-0 space-x-2 invisible lg:visible">
 			{#each routes as route (route.key)}
 				{#if route.path}
