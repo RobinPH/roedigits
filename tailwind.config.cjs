@@ -2,14 +2,18 @@
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			colors: {
+				white: '#E5D0CC'
+			}
+		}
 	},
 	daisyui: {
 		themes: [
 			{
 				mytheme: {
 					...require('daisyui/src/colors/themes')['[data-theme=corporate]'],
-					primary: '#FBBD23',
+					primary: '#F4C358',
 					// secondary: "#EF9FBC",
 					accent: '#EEAF3A',
 					// neutral: "#291334",
@@ -18,7 +22,7 @@ module.exports = {
 					'base-300': '#f5f7fa',
 					info: '#72BAF5',
 					success: '#70E0AA',
-					// warning: "#FBBD23",
+					warning: '#F4C358',
 					error: '#F93E3E',
 					'zinc-800': '#285474'
 					// "--rounded-box": "0.25rem",

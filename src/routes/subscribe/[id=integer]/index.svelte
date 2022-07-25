@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { fly } from 'svelte/transition';
+	import AnimatedElement from '$lib/components/AnimatedElement.svelte';
 	import BundleBriefInfo from '$lib/components/Bundle/BundleBriefInfo.svelte';
 	import BundleBriefPrice from '$lib/components/Bundle/BundleBriefPrice.svelte';
 	import BundlePrice from '$lib/components/Bundle/BundlePrice.svelte';
@@ -44,26 +46,37 @@
 </script>
 
 {#if bundle}
-	<div class="hero bg-zinc-800 py-24 text-white">
-		<div class="w-full px-24 sm:px-12 md:px-72">
-			<h1 class="text-5xl font-bold text-center">Go from Beginner to Expert</h1>
-			<p class="py-6 text-center">
-				{bundle.description}
-			</p>
-			<div class="w-full sm:w-96 mx-auto">
-				<BundlePrice {bundle} />
+	<div class="hero bg-zinc-800 py-24 text-[#F8F7F9]">
+		<AnimatedElement>
+			<div class="w-full px-24 sm:px-12 md:px-72">
+				<div in:fly={{ y: 200, duration: 1000 }}>
+					<h1 class="text-5xl font-bold text-center">Go from Beginner to Expert</h1>
+
+					<p class="py-6 text-center">
+						{bundle.description}
+					</p>
+				</div>
+				<div class="w-full sm:w-96 mx-auto" in:fly={{ y: 200, duration: 1500 }}>
+					<BundlePrice {bundle} />
+				</div>
 			</div>
-		</div>
+		</AnimatedElement>
 	</div>
 
 	<div class="hero bg-zinc-300">
 		<div class="w-full  px-24 sm:px-12 md:px-72 py-24">
-			<div><h1 class="text-2xl font-bold py-5">Similar Items</h1></div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-				{#each similarBundles.slice(0, 3) as bundle (bundle.id)}
-					<BundleBriefPrice {bundle} />
-				{/each}
-			</div>
+			<AnimatedElement>
+				<div in:fly={{ y: 200, duration: 1500 }}>
+					<h1 class="text-2xl font-bold py-5">Similar Items</h1>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+					{#each similarBundles.slice(0, 3) as bundle, i (bundle.id)}
+						<div in:fly={{ y: 200, duration: 2000 + 500 * i }}>
+							<BundleBriefPrice {bundle} />
+						</div>
+					{/each}
+				</div>
+			</AnimatedElement>
 		</div>
 	</div>
 {/if}

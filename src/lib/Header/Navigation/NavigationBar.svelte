@@ -40,7 +40,7 @@
 
 <!-- svelte-ignore a11y-missing-attribute -->
 
-<div class="navbar bg-zinc-900 text-white lg:px-44">
+<div class="navbar bg-zinc-900 text-[#F8F7F9] lg:px-44">
 	<div class="navbar-start">
 		<div class="dropdown">
 			<label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -88,7 +88,7 @@
 				{/each}
 			</ul>
 		</div>
-		<a class="btn btn-ghost normal-case text-xl hover:bg-warning" href="/">
+		<a class="btn btn-ghost normal-case text-xl hover:bg-warning hover:text-black" href="/">
 			<div class="w-10 rounded-full pr-2">
 				<img src="/images/logo.png" alt="roedigits-logo" class="w-auto" />
 			</div>
@@ -97,10 +97,12 @@
 		<ul class="menu menu-horizontal p-0 space-x-2 invisible lg:visible">
 			{#each routes as route (route.key)}
 				{#if route.path}
-					<a class="btn btn-ghost hover:bg-warning rounded-btn" href={route.path}>{route.label}</a>
+					<a class="btn btn-ghost hover:bg-warning hover:text-black rounded-btn" href={route.path}
+						>{route.label}</a
+					>
 				{:else if route.sub}
 					<div class="dropdown ">
-						<label tabindex="0" class="btn btn-ghost rounded-btn hover:bg-warning"
+						<label tabindex="0" class="btn btn-ghost rounded-btn hover:bg-warning hover:text-black"
 							>{route.label}
 							<svg
 								class="fill-current"
@@ -116,7 +118,10 @@
 							class="menu dropdown-content p-2 shadow rounded-box w-52 mt-4 bg-zinc-900"
 						>
 							{#each route.sub as sub (sub.key)}
-								<li><a href={sub.path} class="w-full hover:bg-warning">{sub.label}</a></li>
+								<li>
+									<a href={sub.path} class="w-full hover:bg-warning hover:text-black">{sub.label}</a
+									>
+								</li>
 							{/each}
 						</ul>
 					</div>
@@ -128,7 +133,7 @@
 	<div class="navbar-end space-x-2">
 		{#if $account}
 			<div class="dropdown dropdown-end">
-				<button class="btn btn-ghost hover:bg-warning">
+				<button class="btn btn-ghost hover:bg-warning hover:text-black">
 					<p class="px-2">{$account.email}</p>
 					<div class="w-10 rounded-full">
 						<svg
@@ -153,7 +158,7 @@
 				>
 					<li>
 						<button
-							class="hover:bg-warning"
+							class="hover:bg-warning hover:text-black"
 							on:click={() => {
 								goto('/myBundles');
 							}}>My Courses</button
@@ -161,7 +166,7 @@
 					</li>
 					<li>
 						<button
-							class="hover:bg-warning"
+							class="hover:bg-warning hover:text-black"
 							on:click={() => {
 								account.set(null);
 								goto('/');

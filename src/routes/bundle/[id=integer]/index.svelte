@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import trpc, { type InferQueryOutput } from '$lib/trpc/client';
 	import CourseAsBundleBriefInfo from '$lib/components/Bundle/CourseAsBundleBriefInfo.svelte';
@@ -15,6 +16,7 @@
 	import EditableText from '$lib/components/Editable/EditableText.svelte';
 	import EditableList from '$lib/components/Editable/EditableList.svelte';
 	import Biography from '$lib/components/Biography/Biography.svelte';
+	import AnimatedElement from '$lib/components/AnimatedElement.svelte';
 
 	let id = parseInt($page.params.id);
 
@@ -57,100 +59,110 @@
 			<div>Discount: <EditableTextInput id="discount" /></div>
 		</div>
 	</Editable>
-	<div class="hero min-h-screen bg-zinc-800 px-24 sm:px-12 md:px-48 text-white">
-		<Editable
-			{id}
-			query="bundle.updateBundle"
-			initialValues={{
-				name: bundle.name,
-				description: bundle.description,
-				image: bundle.image
-			}}
-			validationSchema={Yup.object({
-				name: Yup.string().required('Required'),
-				description: Yup.string().required('Required'),
-				image: Yup.string().required('Required')
-			})}
-		>
-			<div class="flex w-full">
-				<div class={`card rounded-lg ${owned ? 'border-4 border-warning' : ''}`}>
-					{#if owned}
-						<span class="absolute top-0 left-0 bg-warning m-2 p-2 text-xs font-bold rounded"
-							>OWNED</span
-						>
-					{/if}
-					<EditableImage id="image" class="rounded-lg shadow-2xl" alt="course-thumbnail" />
+	<div class="hero min-h-screen bg-zinc-800 px-24 sm:px-12 md:px-48 text-[#F8F7F9]">
+		<AnimatedElement>
+			<Editable
+				{id}
+				query="bundle.updateBundle"
+				initialValues={{
+					name: bundle.name,
+					description: bundle.description,
+					image: bundle.image
+				}}
+				validationSchema={Yup.object({
+					name: Yup.string().required('Required'),
+					description: Yup.string().required('Required'),
+					image: Yup.string().required('Required')
+				})}
+			>
+				<div class="flex w-full">
+					<div
+						class={`card rounded-lg ${owned ? 'border-4 border-warning' : ''}`}
+						in:fly={{ x: -200, duration: 2000 }}
+					>
+						{#if owned}
+							<span
+								class="absolute top-0 left-0 bg-warning m-2 p-2 text-xs font-bold rounded text-black"
+								>OWNED</span
+							>
+						{/if}
+						<EditableImage id="image" class="rounded-lg shadow-2xl" alt="course-thumbnail" />
+					</div>
+					<div class="my-auto pl-10" in:fly={{ x: 200, duration: 2000 }}>
+						<h1 class="text-5xl font-bold"><EditableTextInput id="name" /></h1>
+						<p class="py-6">
+							<EditableTextAreaInput id="description" />
+						</p>
+						<BundleActionButton {bundle} {owned} {isSingle} />
+					</div>
 				</div>
-				<div class="my-auto pl-10">
-					<h1 class="text-5xl font-bold"><EditableTextInput id="name" /></h1>
-					<p class="py-6">
-						<EditableTextAreaInput id="description" />
-					</p>
-					<BundleActionButton {bundle} {owned} {isSingle} />
-				</div>
-			</div>
-		</Editable>
+			</Editable>
+		</AnimatedElement>
 	</div>
 	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-48 py-24">
-		<div class="flex w-full space-x-5">
-			<div class="w-full">
-				<Editable
-					id={bundle.details.id}
-					query="bundle.updateBundleDetails"
-					initialValues={{
-						title: bundle.details?.title,
-						description: bundle.details?.description
-					}}
-					validationSchema={Yup.object({
-						title: Yup.string().required('Required'),
-						description: Yup.string().required('Required')
-					})}
-				>
-					<h1 class="text-5xl font-bold"><EditableTextInput id="title" /></h1>
-					<p class="py-6">
-						<EditableTextAreaInput id="description" />
-					</p>
-				</Editable>
-				<BundleActionButton {bundle} {owned} {isSingle} />
-			</div>
-			<div class="w-full justify-end hidden sm:block">
-				<div class="card bg-base-100 shadow-xl border-t-8 w-fit ml-auto">
-					<div class="card-body">
-						<Editable
-							{id}
-							query="bundle.updateBundle"
-							initialValues={{
-								features: bundle.features
-							}}
-							validationSchema={Yup.object({
-								x: Yup.array().of(Yup.string().required('Required'))
-							})}
-						>
-							<EditableList id="features" />
-							{#each bundle.features as feature, i (i)}
-								<div>
-									<div class="flex align-middle">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											class="h-5 w-5 my-auto"
-											viewBox="0 0 20 20"
-											fill="currentColor"
-										>
-											<path
-												d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-											/>
-										</svg>
-										<div class="truncate font-bold my-auto">
-											<EditableText id={`features.${i}`} />
+		<AnimatedElement>
+			<div class="flex w-full space-x-5">
+				<div class="w-full" in:fly={{ x: -200, duration: 2000 }}>
+					<Editable
+						id={bundle.details.id}
+						query="bundle.updateBundleDetails"
+						initialValues={{
+							title: bundle.details?.title,
+							description: bundle.details?.description
+						}}
+						validationSchema={Yup.object({
+							title: Yup.string().required('Required'),
+							description: Yup.string().required('Required')
+						})}
+					>
+						<h1 class="text-5xl font-bold"><EditableTextInput id="title" /></h1>
+						<p class="py-6">
+							<EditableTextAreaInput id="description" />
+						</p>
+					</Editable>
+					<BundleActionButton {bundle} {owned} {isSingle} />
+				</div>
+				<div class="w-full justify-end hidden sm:block" in:fly={{ x: 200, duration: 2000 }}>
+					<div
+						class="card bg-zinc-800 shadow-xl border-t-8 border-warning w-fit ml-auto text-[#F8F7F9]"
+					>
+						<div class="card-body">
+							<Editable
+								{id}
+								query="bundle.updateBundle"
+								initialValues={{
+									features: bundle.features
+								}}
+								validationSchema={Yup.object({
+									x: Yup.array().of(Yup.string().required('Required'))
+								})}
+							>
+								<EditableList id="features" />
+								{#each bundle.features as feature, i (i)}
+									<div in:fly={{ x: 200, duration: 2000 + 250 * i }}>
+										<div class="flex align-middle">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												class="h-5 w-5 my-auto"
+												viewBox="0 0 20 20"
+												fill="currentColor"
+											>
+												<path
+													d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+												/>
+											</svg>
+											<div class="truncate font-bold my-auto">
+												<EditableText id={`features.${i}`} />
+											</div>
 										</div>
 									</div>
-								</div>
-							{/each}
-						</Editable>
+								{/each}
+							</Editable>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</AnimatedElement>
 	</div>
 	{#if bundle.details}
 		<!-- <div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
@@ -187,56 +199,61 @@
 				</Editable>
 			</div>
 		</div> -->
-		<div class="hero bg-zinc-800 text-white px-24 sm:px-12 md:px-72 py-24">
-			<div class="w-full">
-				<h1 class="text-xl font-bold">What You'l Learn...</h1>
-				<Editable
-					id={bundle.details.id}
-					query="bundle.updateBundleDetails"
-					initialValues={{
-						whatYouWillLearn: bundle.details.whatYouWillLearn
-					}}
-					validationSchema={Yup.object({
-						x: Yup.array().of(Yup.string().required('Required'))
-					})}
-				>
-					<EditableList id="whatYouWillLearn" />
-					{#each bundle.details.whatYouWillLearn as whatYouWillLearn, i}
-						<div class="flex justify-start">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="h-5 w-5 my-auto"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-									clip-rule="evenodd"
-								/>
-							</svg>
-							<div><EditableText id={`whatYouWillLearn.${i}`} /></div>
-						</div>
-					{/each}
-				</Editable>
-			</div>
+		<div class="hero bg-zinc-800 text-[#F8F7F9] px-24 sm:px-12 md:px-72 py-24">
+			<AnimatedElement>
+				<div class="w-full" in:fly={{ x: -200, duration: 2000 }}>
+					<h1 class="text-xl font-bold">What You'l Learn...</h1>
+					<Editable
+						id={bundle.details.id}
+						query="bundle.updateBundleDetails"
+						initialValues={{
+							whatYouWillLearn: bundle.details.whatYouWillLearn
+						}}
+						validationSchema={Yup.object({
+							x: Yup.array().of(Yup.string().required('Required'))
+						})}
+					>
+						<EditableList id="whatYouWillLearn" />
+						{#each bundle.details.whatYouWillLearn as whatYouWillLearn, i}
+							<div class="flex justify-start">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-5 w-5 my-auto"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								<div><EditableText id={`whatYouWillLearn.${i}`} /></div>
+							</div>
+						{/each}
+					</Editable>
+				</div>
+			</AnimatedElement>
 		</div>
 	{/if}
 	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-72 py-24">
-		<div class="hero-content text-center">
-			<div class="max-w-md">
-				<h1 class="text-2xl font-bold py-5">Join {uniqueOwners} happy students!</h1>
-				<BundleActionButton {bundle} {owned} {isSingle} />
+		<AnimatedElement>
+			<div class="hero-content text-center" in:fly={{ x: 200, duration: 2000 }}>
+				<div class="max-w-md">
+					<h1 class="text-2xl font-bold py-5">Join {uniqueOwners} happy students!</h1>
+					<BundleActionButton {bundle} {owned} {isSingle} />
+				</div>
 			</div>
-		</div>
+		</AnimatedElement>
 	</div>
-	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 text-white">
+	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 text-[#F8F7F9]">
 		<div class="w-full">
 			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
+
 			<Biography />
 		</div>
 	</div>
-	{#if bundle && false}
+	<!-- {#if bundle && false}
 		{#if bundle.courses.length > 1}
 			<div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
 				<div class="w-full">
@@ -267,7 +284,7 @@
 				</div>
 			</div>
 		{/if}
-	{/if}
+	{/if} -->
 {:else}
 	<div><Loading /></div>
 {/if}
