@@ -1,10 +1,6 @@
-<script lang="ts">
-	import trpcClient from '$lib/trpcClient';
-</script>
-
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Roedigits</title>
+	<meta name="description" content="Roedigits" />
 </svelte:head>
 
-<div class="text-green-900 text-center bg-transparent">Hello World</div>
+Home

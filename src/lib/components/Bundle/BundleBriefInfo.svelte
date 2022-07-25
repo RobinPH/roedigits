@@ -1,0 +1,31 @@
+<script lang="ts">
+	import type { InferQueryOutput } from '$lib/trpc/client';
+	import { myBundles } from '$store/account';
+
+	export let bundle: InferQueryOutput<'bundle.getAll'>[number];
+
+	$: owned = $myBundles.some((b) => b.id === bundle.id);
+</script>
+
+<a
+	sveltekit:reload
+	class={`card card-compact w-full bg-base-100 shadow-xl duration-500 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03] hover:cursor-pointer ${
+		owned ? 'border-warning border-4' : ''
+	}`}
+	href={`/bundle/${bundle.id}`}
+>
+	{#if owned}
+		<span class="absolute top-0 left-0 bg-warning m-2 p-2 text-xs font-bold rounded">OWNED</span>
+	{/if}
+
+	<figure><img src={bundle.image} alt="course-thumbnail" /></figure>
+	<div class="card-body">
+		<h2 class="card-title">{bundle.name}</h2>
+		<p>{bundle.description}</p>
+
+		{#if bundle.courses && bundle.courses.length > 1}
+			<br />
+			<p>{bundle.courses.length} Course Bundle</p>
+		{/if}
+	</div>
+</a>
