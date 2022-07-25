@@ -34,6 +34,7 @@
 </script>
 
 {#if $isEditting && authenticated}
+	<p>Length (Refresh after saving to see changes)</p>
 	<input type="number" bind:value={size} />
 {/if}
 <slot />
