@@ -31,15 +31,17 @@
 			image: Yup.string().required('Required')
 		})}
 	>
-		<div class="flex space-x-5">
-			<div>
-				<EditableImage id="image" class="max-w-[10rem] rounded-lg shadow-2xl" alt="instructor" />
+		<div class="block lg:flex space-x-5 text-center">
+			<div class="text-center">
+				<EditableImage
+					id="image"
+					class="m-auto max-w-[10rem] rounded-lg shadow-2xl"
+					alt="instructor"
+				/>
 				<p class="text-center font-bold"><EditableText id="name" /></p>
 			</div>
 			<div>
-				<p>
-					<EditableTextArea id="biography" />
-				</p>
+				<EditableTextArea id="biography" />
 			</div>
 		</div>
 	</Editable>

@@ -58,7 +58,7 @@
 				})}
 			>
 				<div class="w-full block lg:flex">
-					<div class="card" in:fly={{ x: -200, duration: 2000 }}>
+					<div class="card mb-10 lg:mb-none" in:fly={{ x: -200, duration: 2000 }}>
 						{#if owned}
 							<span
 								class="absolute top-0 left-0 bg-warning m-2 p-2 text-xs font-bold rounded text-black"
@@ -261,13 +261,13 @@
 		</div> -->
 	{/if}
 	{#if bundle}
-		<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24">
+		<div class="hero bg-zinc-800 px-24 sm:px-12 lg:px-72 py-24">
 			<div class="w-full">
 				<AnimatedElement>
 					<div in:fly={{ x: -200, duration: 2000 }}>
 						<h1 class="text-2xl font-bold py-5 text-[#F8F7F9]">Courses Included with Purchase</h1>
 					</div>
-					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+					<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 						{#each bundle.courses as course, i (course.id)}
 							<div in:fly={{ x: -200, duration: 2000 + 500 * (bundle.courses.length - i) }}>
 								<CourseAsBundleBriefInfo {course} />
@@ -295,7 +295,7 @@
 				</div>
 			</div> -->
 	{/if}
-	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-72 py-24">
+	<div class="hero bg-zinc-300 px-24 sm:px-12 lg:px-72 py-24">
 		<AnimatedElement>
 			<div class="hero-content text-center" in:fly={{ x: 200, duration: 2000 }}>
 				<div class="max-w-md">
@@ -309,7 +309,7 @@
 	</div>
 	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 ">
 		<div class="w-full text-[#F8F7F9]">
-			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
+			<h1 class="text-2xl font-bold py-5 hidden lg:block">Your Instructor</h1>
 
 			<Biography />
 		</div>
