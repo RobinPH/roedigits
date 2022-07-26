@@ -12,11 +12,6 @@
 	});
 </script>
 
-<svelte:head>
-	<title>Roedigits</title>
-	<meta name="description" content="Roedigits" />
-</svelte:head>
-
 <!-- <div class="hero min-h-screen ">
 	<div class="hero-content flex-col lg:flex-row-reverse">
 		<div>
