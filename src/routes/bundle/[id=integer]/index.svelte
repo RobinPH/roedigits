@@ -41,7 +41,7 @@
 </script>
 
 {#if bundle}
-	<div class="hero min-h-screen bg-zinc-800 px-24 sm:px-12 md:px-48 text-[#F8F7F9]">
+	<div class="hero min-h-screen bg-zinc-800 px-4 sm:px-12 md:px-48 text-[#F8F7F9]">
 		<AnimatedElement>
 			<Editable
 				{id}
@@ -86,14 +86,14 @@
 			</Editable>
 		</AnimatedElement>
 	</div>
-	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-48 py-24">
+	<div class="hero bg-zinc-300 px-4 sm:px-12 md:px-48 py-24">
 		<AnimatedElement>
 			<div class="block lg:flex w-full space-x-5 flex-col lg:flex-row-reverse">
-				<div class="w-full lg:justify-end" in:fly={{ x: 200, duration: 2000 }}>
+				<div class="w-full lg:justify-end truncate" in:fly={{ x: 200, duration: 2000 }}>
 					<div
-						class="card bg-zinc-800 shadow-xl border-t-8 border-warning w-fit m-auto mb-10 lg:mb-none text-[#F8F7F9]"
+						class="card max-w-[70%] bg-zinc-800 shadow-xl border-t-8 border-warning w-fit m-auto mb-10 lg:mb-none text-[#F8F7F9]"
 					>
-						<div class="card-body">
+						<div class="card-body max-w-[70%]">
 							<Editable
 								{id}
 								query="bundle.updateBundle"
@@ -118,9 +118,9 @@
 													d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
 												/>
 											</svg>
-											<div class="truncate font-bold my-auto">
+											<p class="text-ellipsis overflow-hidden">
 												<EditableText id={`features.${i}`} />
-											</div>
+											</p>
 										</div>
 									</div>
 								{/each}
@@ -187,7 +187,7 @@
 		</AnimatedElement>
 	</div>
 	{#if bundle.details}
-		<!-- <div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
+		<!-- <div class="hero bg-green-100 px-4 sm:px-12 md:px-72 py-24">
 			<div class="w-full">
 				<h1 class="text-xl font-bold">By the end of this course, you'll be able to…</h1>
 				<Editable
@@ -221,7 +221,7 @@
 				</Editable>
 			</div>
 		</div> -->
-		<!-- <div class="hero bg-zinc-800 text-[#F8F7F9] px-24 sm:px-12 md:px-72 py-24">
+		<!-- <div class="hero bg-zinc-800 text-[#F8F7F9] px-4 sm:px-12 md:px-72 py-24">
 			<AnimatedElement>
 				<div class="w-full" in:fly={{ x: -200, duration: 2000 }}>
 					<h1 class="text-xl font-bold">What You'l Learn...</h1>
@@ -261,7 +261,7 @@
 		</div> -->
 	{/if}
 	{#if bundle}
-		<div class="hero bg-zinc-800 px-24 sm:px-12 lg:px-72 py-24">
+		<div class="hero bg-zinc-800 px-4 sm:px-12 lg:px-72 py-24">
 			<div class="w-full">
 				<AnimatedElement>
 					<div in:fly={{ x: -200, duration: 2000 }}>
@@ -277,7 +277,7 @@
 				</AnimatedElement>
 			</div>
 		</div>
-		<!-- <div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
+		<!-- <div class="hero bg-green-100 px-4 sm:px-12 md:px-72 py-24">
 				<div class="w-full">
 					<div><h1 class="text-2xl font-bold py-5">Course Curriculum</h1></div>
 					{#each bundle.courses[0].curricula as curriculum (curriculum.id)}
@@ -295,7 +295,7 @@
 				</div>
 			</div> -->
 	{/if}
-	<div class="hero bg-zinc-300 px-24 sm:px-12 lg:px-72 py-24">
+	<div class="hero bg-zinc-300 px-4 sm:px-12 lg:px-72 py-24">
 		<AnimatedElement>
 			<div class="hero-content text-center" in:fly={{ x: 200, duration: 2000 }}>
 				<div class="max-w-md">
@@ -307,7 +307,7 @@
 			</div>
 		</AnimatedElement>
 	</div>
-	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 ">
+	<div class="hero bg-zinc-800 px-4 sm:px-12 md:px-72 py-24 ">
 		<div class="w-full text-[#F8F7F9]">
 			<h1 class="text-2xl font-bold py-5 hidden lg:block">Your Instructor</h1>
 

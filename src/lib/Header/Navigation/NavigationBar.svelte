@@ -48,7 +48,7 @@
 <div class="navbar bg-zinc-900 text-[#F8F7F9] lg:px-44">
 	<div class="navbar-start">
 		<div class="dropdown">
-			<label tabindex="0" class="lg:hidden">
+			<label tabindex="0" class="btn btn-ghost lg:hidden">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-5 w-5"
@@ -106,7 +106,7 @@
 			</div>
 			<p>RoeDigits</p>
 		</a>
-		<ul class="menu menu-horizontal p-0 space-x-2 invisible lg:visible">
+		<ul class="menu menu-horizontal p-0 space-x-2 hidden lg:block">
 			{#each routes as route (route.key)}
 				{#if route.path}
 					<a class="btn btn-ghost hover:bg-warning hover:text-black rounded-btn" href={route.path}
