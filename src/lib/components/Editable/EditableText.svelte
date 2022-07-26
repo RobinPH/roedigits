@@ -7,6 +7,8 @@
 	import type { Writable } from 'svelte/store';
 
 	export let id: string;
+	export let parser = (value: string) => value;
+	export let hidden = false;
 
 	const isEditting = getContext<Writable<boolean>>('isEditting');
 	const form = getContext<Writable<Record<string, any>>>('form');
@@ -26,6 +28,7 @@
 </script>
 
 {#if $isEditting && authenticated}
+	<label for={id}>{id}</label>
 	<input
 		type="text"
 		class="text-black"
@@ -34,6 +37,6 @@
 		on:change={handleChange}
 		on:blur={handleChange}
 	/>
-{:else}
-	{value}
+{:else if !hidden}
+	{parser(value)}
 {/if}

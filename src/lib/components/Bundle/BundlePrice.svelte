@@ -23,8 +23,8 @@
 				<p>Complete Bundle Payment</p>
 			{/if}
 			<div class=" py-10">
-				<span class="text-5xl">${getBundlePrice(bundle)}</span>
-				<div class="my-auto inline-block -translate-y-2"><del>${bundle.price}</del></div>
+				<span class="text-5xl">₱{getBundlePrice(bundle)}</span>
+				<div class="my-auto inline-block -translate-y-2"><del>₱{bundle.price}</del></div>
 				<p class="pt-4"><b>Limited time at this price!</b></p>
 			</div>
 			<div class="card-actions">

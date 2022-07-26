@@ -38,7 +38,7 @@
 				</div>
 				<div class="text-right">
 					<p>
-						Price: <span class="font-bold text-xl">${getBundlePrice(bundle)}</span>
+						Price: <span class="font-bold text-xl">₱{getBundlePrice(bundle)}</span>
 					</p>
 				</div>
 			</div>

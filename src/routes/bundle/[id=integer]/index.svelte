@@ -5,7 +5,7 @@
 	import CourseAsBundleBriefInfo from '$lib/components/Bundle/CourseAsBundleBriefInfo.svelte';
 	import { page } from '$app/stores';
 	import { myBundles } from '$store/account';
-	import { minuteFormat } from '$lib/utility';
+	import { getBundlePrice, minuteFormat } from '$lib/utility';
 	import BundleActionButton from '$lib/components/Bundle/BundleActionButton.svelte';
 	import Loading from '$lib/components/Loading/Loading.svelte';
 	import Editable from '$lib/components/Editable/Editable.svelte';
@@ -41,24 +41,6 @@
 </script>
 
 {#if bundle}
-	<Editable
-		{id}
-		hidden={true}
-		query="bundle.updateBundle"
-		initialValues={{
-			price: bundle.price,
-			discount: bundle.discount
-		}}
-		validationSchema={Yup.object({
-			price: Yup.number().required('Required'),
-			discount: Yup.number().required('Required')
-		})}
-	>
-		<div class="bg-gray-300 p-5">
-			<div>Price: <EditableTextInput id="price" /></div>
-			<div>Discount: <EditableTextInput id="discount" /></div>
-		</div>
-	</Editable>
 	<div class="hero min-h-screen bg-zinc-800 px-24 sm:px-12 md:px-48 text-[#F8F7F9]">
 		<AnimatedElement>
 			<Editable
@@ -75,20 +57,21 @@
 					image: Yup.string().required('Required')
 				})}
 			>
-				<div class="flex w-full">
-					<div
-						class={`card rounded-lg ${owned ? 'border-4 border-warning' : ''}`}
-						in:fly={{ x: -200, duration: 2000 }}
-					>
+				<div class="w-full block lg:flex">
+					<div class="card" in:fly={{ x: -200, duration: 2000 }}>
 						{#if owned}
 							<span
 								class="absolute top-0 left-0 bg-warning m-2 p-2 text-xs font-bold rounded text-black"
 								>OWNED</span
 							>
 						{/if}
-						<EditableImage id="image" class="rounded-lg shadow-2xl" alt="course-thumbnail" />
+						<EditableImage
+							id="image"
+							class={`rounded-lg shadow-2xl ${owned ? 'border-4 border-warning' : ''}`}
+							alt="course-thumbnail"
+						/>
 					</div>
-					<div class="my-auto pl-10" in:fly={{ x: 200, duration: 2000 }}>
+					<div class="my-auto lg:pl-10" in:fly={{ x: 200, duration: 2000 }}>
 						<h1 class="text-5xl font-bold" in:fly={{ x: 200, duration: 2500 }}>
 							<EditableTextInput id="name" />
 						</h1>
@@ -105,35 +88,10 @@
 	</div>
 	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-48 py-24">
 		<AnimatedElement>
-			<div class="flex w-full space-x-5">
-				<div class="w-full" in:fly={{ x: -200, duration: 2000 }}>
-					<Editable
-						id={bundle.details.id}
-						query="bundle.updateBundleDetails"
-						initialValues={{
-							title: bundle.details?.title,
-							description: bundle.details?.description
-						}}
-						validationSchema={Yup.object({
-							title: Yup.string().required('Required'),
-							description: Yup.string().required('Required')
-						})}
-					>
-						<h1 class="text-5xl font-bold" in:fly={{ x: -200, duration: 2500 }}>
-							<EditableTextInput id="title" />
-						</h1>
-						<p class="py-6" in:fly={{ x: -200, duration: 3000 }}>
-							<EditableTextAreaInput id="description" />
-						</p>
-					</Editable>
-
-					<div in:fly={{ x: -200, duration: 3500 }}>
-						<BundleActionButton {bundle} {owned} {isSingle} />
-					</div>
-				</div>
-				<div class="w-full justify-end hidden sm:block" in:fly={{ x: 200, duration: 2000 }}>
+			<div class="block lg:flex w-full space-x-5 flex-col lg:flex-row-reverse">
+				<div class="w-full lg:justify-end" in:fly={{ x: 200, duration: 2000 }}>
 					<div
-						class="card bg-zinc-800 shadow-xl border-t-8 border-warning w-fit ml-auto text-[#F8F7F9]"
+						class="card bg-zinc-800 shadow-xl border-t-8 border-warning w-fit m-auto mb-10 lg:mb-none text-[#F8F7F9]"
 					>
 						<div class="card-body">
 							<Editable
@@ -168,6 +126,61 @@
 								{/each}
 							</Editable>
 						</div>
+					</div>
+				</div>
+				<div class="w-full" in:fly={{ x: -200, duration: 2000 }}>
+					<!-- <Editable
+						id={bundle.details.id}
+						query="bundle.updateBundleDetails"
+						initialValues={{
+							title: bundle.details?.title,
+							description: bundle.details?.description
+						}}
+						validationSchema={Yup.object({
+							title: Yup.string().required('Required'),
+							description: Yup.string().required('Required')
+						})}
+					>
+						<h1 class="text-5xl font-bold" in:fly={{ x: -200, duration: 2500 }}>
+							<EditableTextInput id="title" />
+						</h1>
+						<p class="py-6" in:fly={{ x: -200, duration: 3000 }}>
+							<EditableTextAreaInput id="description" />
+						</p>
+					</Editable> -->
+					<h1 class="text-xl lg:text-5xl font-bold" in:fly={{ x: -200, duration: 2500 }}>
+						Enroll Now to enjoy these perks
+					</h1>
+					<Editable
+						{id}
+						query="bundle.updateBundle"
+						initialValues={{
+							price: bundle.price,
+							discount: bundle.discount
+						}}
+						validationSchema={Yup.object({
+							price: Yup.number().required('Required'),
+							discount: Yup.number().required('Required')
+						})}
+					>
+						<div class="py-6" in:fly={{ x: -200, duration: 3000 }}>
+							<span class="text-5xl">₱{getBundlePrice(bundle)}</span>
+							<span class="my-auto inline-block -translate-y-2">
+								<del>
+									<EditableText
+										id="price"
+										parser={(price) => {
+											// @ts-ignore
+											return `₱${price}`;
+										}}
+									/>
+								</del>
+							</span>
+						</div>
+						<span><EditableText id="discount" hidden={true} /></span>
+					</Editable>
+					<div in:fly={{ x: -200, duration: 3500 }}>
+						<BundleActionButton {bundle} {owned} {isSingle} />
 					</div>
 				</div>
 			</div>
@@ -208,7 +221,7 @@
 				</Editable>
 			</div>
 		</div> -->
-		<div class="hero bg-zinc-800 text-[#F8F7F9] px-24 sm:px-12 md:px-72 py-24">
+		<!-- <div class="hero bg-zinc-800 text-[#F8F7F9] px-24 sm:px-12 md:px-72 py-24">
 			<AnimatedElement>
 				<div class="w-full" in:fly={{ x: -200, duration: 2000 }}>
 					<h1 class="text-xl font-bold">What You'l Learn...</h1>
@@ -245,39 +258,26 @@
 					</Editable>
 				</div>
 			</AnimatedElement>
-		</div>
+		</div> -->
 	{/if}
-	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-72 py-24">
-		<AnimatedElement>
-			<div class="hero-content text-center" in:fly={{ x: 200, duration: 2000 }}>
-				<div class="max-w-md">
-					<h1 class="text-2xl font-bold py-5">Join {uniqueOwners} happy students!</h1>
-					<BundleActionButton {bundle} {owned} {isSingle} />
-				</div>
-			</div>
-		</AnimatedElement>
-	</div>
-	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 text-[#F8F7F9]">
-		<div class="w-full">
-			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
-
-			<Biography />
-		</div>
-	</div>
-	<!-- {#if bundle && false}
-		{#if bundle.courses.length > 1}
-			<div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
-				<div class="w-full">
-					<div><h1 class="text-2xl font-bold py-5">Courses Included with Purchase</h1></div>
+	{#if bundle}
+		<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24">
+			<div class="w-full">
+				<AnimatedElement>
+					<div in:fly={{ x: -200, duration: 2000 }}>
+						<h1 class="text-2xl font-bold py-5 text-[#F8F7F9]">Courses Included with Purchase</h1>
+					</div>
 					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-						{#each bundle.courses as course (course.id)}
-							<CourseAsBundleBriefInfo {course} />
+						{#each bundle.courses as course, i (course.id)}
+							<div in:fly={{ x: -200, duration: 2000 + 500 * (bundle.courses.length - i) }}>
+								<CourseAsBundleBriefInfo {course} />
+							</div>
 						{/each}
 					</div>
-				</div>
+				</AnimatedElement>
 			</div>
-		{:else if bundle.courses.length === 1}
-			<div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
+		</div>
+		<!-- <div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
 				<div class="w-full">
 					<div><h1 class="text-2xl font-bold py-5">Course Curriculum</h1></div>
 					{#each bundle.courses[0].curricula as curriculum (curriculum.id)}
@@ -293,9 +293,27 @@
 						</div>
 					{/each}
 				</div>
+			</div> -->
+	{/if}
+	<div class="hero bg-zinc-300 px-24 sm:px-12 md:px-72 py-24">
+		<AnimatedElement>
+			<div class="hero-content text-center" in:fly={{ x: 200, duration: 2000 }}>
+				<div class="max-w-md">
+					<h1 class="text-2xl font-bold py-5">
+						Join {uniqueOwners} happy students!
+					</h1>
+					<BundleActionButton {bundle} {owned} {isSingle} />
+				</div>
 			</div>
-		{/if}
-	{/if} -->
+		</AnimatedElement>
+	</div>
+	<div class="hero bg-zinc-800 px-24 sm:px-12 md:px-72 py-24 ">
+		<div class="w-full text-[#F8F7F9]">
+			<h1 class="text-2xl font-bold py-5">Your Instructor</h1>
+
+			<Biography />
+		</div>
+	</div>
 {:else}
 	<div><Loading /></div>
 {/if}

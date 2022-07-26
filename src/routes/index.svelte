@@ -80,7 +80,7 @@
 	<div class="hero-content w-full px-24 text-center ">
 		<AnimatedElement
 			><div in:fly={{ y: 200, duration: 2000 }}>
-				<h1 class="text-7xl font-bold">Join {uniqueOwners} Happy Students</h1>
+				<h1 class="text-5xl font-bold">Join {uniqueOwners} Happy Students</h1>
 				<p class="text-lg py-6">
 					<a class="btn btn-warning font-bold" href="/register">REGISTER NOW</a>
 				</p>

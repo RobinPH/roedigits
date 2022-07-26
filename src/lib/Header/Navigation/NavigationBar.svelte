@@ -5,6 +5,11 @@
 
 	const routes = [
 		{
+			key: 'home',
+			label: 'Home',
+			path: '/'
+		},
+		{
 			key: 'subscribe',
 			label: 'Subscribe',
 			path: '/subscribe'
@@ -13,28 +18,28 @@
 			key: 'courses',
 			label: 'Courses',
 			path: '/bundles'
-		},
-		{
-			key: 'more',
-			label: 'More',
-			sub: [
-				{
-					key: 'about-us',
-					label: 'About Us',
-					path: '/about'
-				},
-				{
-					key: 'faq',
-					label: 'Frequently Asked Question',
-					path: '/faq'
-				},
-				{
-					key: 'contact-us',
-					label: 'Contact Us',
-					path: '/contact'
-				}
-			]
 		}
+		// {
+		// 	key: 'more',
+		// 	label: 'More',
+		// 	sub: [
+		// 		{
+		// 			key: 'about-us',
+		// 			label: 'About Us',
+		// 			path: '/about'
+		// 		},
+		// 		{
+		// 			key: 'faq',
+		// 			label: 'Frequently Asked Question',
+		// 			path: '/faq'
+		// 		},
+		// 		{
+		// 			key: 'contact-us',
+		// 			label: 'Contact Us',
+		// 			path: '/contact'
+		// 		}
+		// 	]
+		// }
 	];
 </script>
 
@@ -43,7 +48,7 @@
 <div class="navbar bg-zinc-900 text-[#F8F7F9] lg:px-44">
 	<div class="navbar-start">
 		<div class="dropdown">
-			<label tabindex="0" class="btn btn-ghost lg:hidden">
+			<label tabindex="0" class="lg:hidden">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-5 w-5"
@@ -141,7 +146,7 @@
 		{#if $account}
 			<div class="dropdown dropdown-end">
 				<button class="btn btn-ghost hover:bg-warning hover:text-black">
-					<p class="px-2">{$account.email}</p>
+					<p class="hidden md:block px-2">{$account.email}</p>
 					<div class="w-10 rounded-full">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

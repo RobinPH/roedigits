@@ -20,9 +20,7 @@
 			>
 				{#each bundle.courses as course (course.id)}
 					<li>
-						<a class="btn btn-warning text-left hover:btn-ghost" href={`/course/${course.id}`}
-							>{course.name}</a
-						>
+						<a class="btn btn-warning text-left hover:btn-ghost" href="#">{course.name}</a>
 					</li>
 				{/each}
 			</ul>
