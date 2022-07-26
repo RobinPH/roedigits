@@ -1,0 +1,31 @@
+{
+    "short_name": "RoeDigits",
+    "name": "roedigits",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "/images/logo.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "background_color": "#27272A",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#27272A",
+    "shortcuts": [
+        {
+            "name": "My Courses",
+            "short_name": "My Courses",
+            "description": "View your purchased courses",
+            "url": "/myBundles",
+            "icons": [
+                {
+                    "src": "/images/logo.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ],
+    "description": "RoeDigits is an online-based company made by students who love to teach math to anyone willing to learn it. Founded in 2022, RoeDigits set out itself to be a leading educational website that teaches different topics in Mathematics to anyone who wants to learn."
+}
