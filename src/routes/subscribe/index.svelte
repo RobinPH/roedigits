@@ -23,7 +23,7 @@
 </script>
 
 {#if bundles}
-	<div class="py-20 px-24 sm:px-12 md:px-32 bg-zinc-800">
+	<div class="py-20 px-4 sm:px-12 md:px-32 bg-zinc-800">
 		{#if shownBundles.length > 0}
 			<div class="text-transparent">a</div>
 			<div

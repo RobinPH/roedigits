@@ -38,7 +38,7 @@
 
 <Authenticated let:account>
 	{#if hasAccess === true && course}
-		<div class="hero bg-green-100 px-24 sm:px-12 md:px-72 py-24">
+		<div class="hero bg-green-100 px-4 sm:px-12 md:px-72 py-24">
 			<div class="w-full">
 				<h1 class="text-5xl font-bold text-center">{course.name}</h1>
 				<div><h1 class="text-2xl font-bold py-5">Course Curriculum</h1></div>

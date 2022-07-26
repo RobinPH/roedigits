@@ -54,7 +54,7 @@
 
 {#if bundle}
 	<div class="hero bg-zinc-800 py-24 text-[#F8F7F9]">
-		<div class="w-full px-24 sm:px-12 md:px-72">
+		<div class="w-full px-4 sm:px-12 md:px-72">
 			<div in:fly={{ y: 200, duration: 1000 }}>
 				<h1 class="text-5xl font-bold text-center">Go from Beginner to Expert</h1>
 
@@ -69,7 +69,7 @@
 	</div>
 
 	<div class="hero bg-zinc-300">
-		<div class="w-full  px-24 sm:px-12 md:px-72 py-24">
+		<div class="w-full  px-4 sm:px-12 md:px-72 py-24">
 			<!-- <AnimatedElement> -->
 			<div in:fly={{ y: 200, duration: 1500 }}>
 				<h1 class="text-2xl font-bold py-5">Similar Items</h1>

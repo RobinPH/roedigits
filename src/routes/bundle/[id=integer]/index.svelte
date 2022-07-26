@@ -91,9 +91,9 @@
 			<div class="block lg:flex w-full space-x-5 flex-col lg:flex-row-reverse">
 				<div class="w-full lg:justify-end truncate" in:fly={{ x: 200, duration: 2000 }}>
 					<div
-						class="card max-w-[70%] bg-zinc-800 shadow-xl border-t-8 border-warning w-fit m-auto mb-10 lg:mb-none text-[#F8F7F9]"
+						class="card max-w-full bg-zinc-800 shadow-xl border-t-8 border-warning w-fit m-auto mb-10 lg:mb-none text-[#F8F7F9]"
 					>
-						<div class="card-body max-w-[70%]">
+						<div class="card-body max-w-full">
 							<Editable
 								{id}
 								query="bundle.updateBundle"

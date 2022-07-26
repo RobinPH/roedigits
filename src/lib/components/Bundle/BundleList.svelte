@@ -34,7 +34,7 @@
 
 {#if bundles}
 	<div class="py-14 bg-zinc-800">
-		<div class="px-24 sm:px-4 md:px-48">
+		<div class="px-4 sm:px-4 md:px-48">
 			<h1 class="text-5xl font-bold py-5 text-[#F8F7F9]">Bundles</h1>
 			{#if packages.length > 0}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -51,7 +51,7 @@
 			{/if}
 		</div>
 
-		<div class="px-24 sm:px-4 md:px-48">
+		<div class="px-4 sm:px-4 md:px-48">
 			<h1 class="text-5xl font-bold py-5 text-[#F8F7F9]">Courses</h1>
 			{#if singleCourse.length > 0}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

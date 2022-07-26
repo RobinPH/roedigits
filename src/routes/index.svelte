@@ -47,7 +47,7 @@
 	</AnimatedElement>
 </div>
 <div class="hero min-h-screen bg-zinc-300">
-	<div class="hero-content w-full px-24 text-center">
+	<div class="hero-content w-full px-4 text-center">
 		<AnimatedElement>
 			<div in:fly={{ x: -200, duration: 2000 }}>
 				<h1 class="text-6xl font-bold">Our Mission</h1>
@@ -64,7 +64,7 @@
 	</div>
 </div>
 <div class="hero min-h-screen bg-zinc-800">
-	<div class="hero-content w-full px-24 text-center text-[#F8F7F9]">
+	<div class="hero-content w-full px-4 text-center text-[#F8F7F9]">
 		<AnimatedElement>
 			<div in:fly={{ x: 200, duration: 2000 }}>
 				<h1 class="text-6xl font-bold">Our Vision</h1>
@@ -77,7 +77,7 @@
 	</div>
 </div>
 <div class="hero min-h-screen bg-zinc-300">
-	<div class="hero-content w-full px-24 text-center ">
+	<div class="hero-content w-full px-4 text-center ">
 		<AnimatedElement
 			><div in:fly={{ y: 200, duration: 2000 }}>
 				<h1 class="text-5xl font-bold">Join {uniqueOwners} Happy Students</h1>
