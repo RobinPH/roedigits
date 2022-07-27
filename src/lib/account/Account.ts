@@ -179,9 +179,9 @@ export class AccountManager {
 			ownedCourses.push(...bundle.courses);
 		}
 
-		const accessableBundles = bundles.filter((b) =>
-			b.courses.every((c) => ownedCourses.some((oc) => oc.id === c.id))
-		);
+		const accessableBundles = bundles
+			.filter((b) => b.courses.every((c) => ownedCourses.some((oc) => oc.id === c.id)))
+			.sort((a, b) => a.id - b.id);
 
 		return accessableBundles;
 	}

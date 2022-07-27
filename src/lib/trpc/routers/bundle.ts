@@ -7,7 +7,7 @@ import { AccountType } from '@prisma/client';
 const bundle = createRouter()
 	.query('getAll', {
 		resolve: async () => {
-			return await prisma.bundle.findMany({
+			const bundles = await prisma.bundle.findMany({
 				include: {
 					courses: {
 						include: {
@@ -30,6 +30,8 @@ const bundle = createRouter()
 					details: true
 				}
 			});
+
+			return bundles.sort((a, b) => a.id - b.id);
 		}
 	})
 	.query('get', {
