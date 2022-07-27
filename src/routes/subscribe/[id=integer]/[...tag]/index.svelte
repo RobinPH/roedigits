@@ -49,6 +49,9 @@
 					similarBundleIds.add(b.id);
 				}
 			}
+		} else {
+			goto('/subscribe');
+			return;
 		}
 
 		subscribeTitle = (
