@@ -12,7 +12,7 @@ npm install
 yarn install
 ```
 
-Set up environment variables, see `.env.sample`
+Set up environment variables, see `.env.example`
 
 Start the server
 ```bash
