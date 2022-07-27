@@ -11,6 +11,9 @@
 	import { onMount } from 'svelte';
 	import { myBundles } from '$store/account';
 	import { goto } from '$app/navigation';
+	import Editable from '$lib/components/Editable/Editable.svelte';
+	import EditableText from '$lib/components/Editable/EditableText.svelte';
+	import * as Yup from 'yup';
 
 	const id = parseInt($page.params.id);
 
@@ -22,13 +25,11 @@
 		}
 	>();
 
-	let isSingle: boolean = false;
+	let subscribeTitle: string | undefined;
 
 	onMount(async () => {
 		myBundles.set(await trpc.query('account.myBundles'));
 		bundle = await trpc.query('bundle.get', { id });
-
-		isSingle = bundle ? bundle.courses.length === 1 : false;
 
 		const similarBundleIds = new Set<number>();
 
@@ -49,6 +50,12 @@
 				}
 			}
 		}
+
+		subscribeTitle = (
+			await trpc.query('pageText.get', {
+				for: 'subscribeTitle'
+			})
+		)?.text;
 	});
 </script>
 
@@ -56,11 +63,28 @@
 	<div class="hero bg-zinc-800 py-24 text-[#F8F7F9]">
 		<div class="w-full px-4 sm:px-12 md:px-72">
 			<div in:fly={{ y: 200, duration: 1000 }}>
-				<h1 class="text-5xl font-bold text-center">Go from Beginner to Advanced</h1>
-
-				<p class="py-6 text-center">
-					{bundle.description}
-				</p>
+				{#if subscribeTitle}
+					<Editable
+						id={0}
+						query="pageText.update"
+						initialValues={{
+							subscribeTitle: subscribeTitle
+						}}
+						validationSchema={Yup.object({
+							subscribeTitle: Yup.string().required('Required')
+						})}
+					>
+						<h1 class="text-5xl font-bold text-center"><EditableText id="subscribeTitle" /></h1>
+						<p class="py-6 text-center">
+							{bundle.description}
+						</p>
+					</Editable>
+				{:else}
+					<h1 class="text-5xl font-bold text-center">Go from Beginner to Advanced</h1>
+					<p class="py-6 text-center">
+						{bundle.description}
+					</p>
+				{/if}
 			</div>
 			<div class="w-full sm:w-96 mx-auto" in:fly={{ y: 200, duration: 1500 }}>
 				<BundlePrice {bundle} />

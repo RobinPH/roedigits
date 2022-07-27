@@ -14,6 +14,12 @@ model Instructor {
   biography String @db.VarChar(1023)
 }
 
+model PageText {
+  id   Int    @id @default(autoincrement())
+  for  String @unique @db.VarChar(1023)
+  text String @db.VarChar(4095)
+}
+
 model Category {
   id          Int      @id @default(autoincrement())
   image       String   @db.VarChar(1023)

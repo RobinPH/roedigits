@@ -11,11 +11,14 @@ import {
 } from '@prisma/client';
 import crypto from 'crypto';
 import { faker } from '@faker-js/faker';
+import { string } from 'yup';
 
 const prisma = new PrismaClient();
 
 async function main() {
 	console.log('Starting seeding');
+
+	await createPageTexts();
 
 	await createInstructor();
 
@@ -26,6 +29,34 @@ async function main() {
 
 	console.log('Seeding completed');
 }
+
+const createPageTexts = async () => {
+	const texts = {
+		homeTitle: 'RoeDigits',
+		homeDescription:
+			'RoeDigits is an online-based company made by students who love to teach math to anyone willing to learn it. Founded in 2022, RoeDigits set out itself to be a leading educational website that teaches different topics in Mathematics to anyone who wants to learn.',
+		missionTitle: 'Our Mission',
+		missionDescription:
+			'At RoeDigits, every person in our company loves math and loves to teach it. With the passion to spread that love of math with other people, we try our best to make learning math fast and efficient but in an enjoyable way. As much as we focus on helping our student learn efficiently and fast, we prioritize making learning math an enjoyable journey because we believe that the fastest way to make people fall in love with math is to make it fun and enjoyable.',
+		visionTitle: 'Our Vision',
+		visionDescription:
+			'We at RoeDigits envision a future where Math is not something that intimidate people but something people enjoy and love.',
+		subscribeTitle: 'Go from Beginner to Advanced'
+	};
+
+	for (const [for_, text] of Object.entries(texts)) {
+		await createPageText(for_, text);
+	}
+};
+
+const createPageText = async (for_: string, text: string) => {
+	return await prisma.pageText.create({
+		data: {
+			for: for_,
+			text
+		}
+	});
+};
 
 const createInstructor = async () => {
 	return await prisma.instructor.create({
