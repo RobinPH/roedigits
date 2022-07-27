@@ -307,7 +307,7 @@
 			</div>
 		</AnimatedElement>
 	</div>
-	<div class="hero bg-zinc-800 px-4 sm:px-12 py-24 ">
+	<div class="hero bg-zinc-800 px-4 sm:px-12 lg:px-72 py-24 ">
 		<div class="w-full text-[#F8F7F9]">
 			<h1 class="text-2xl font-bold py-5 hidden lg:block">Your Instructor</h1>
 
