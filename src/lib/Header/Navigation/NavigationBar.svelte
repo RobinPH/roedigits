@@ -173,14 +173,16 @@
 							<label><b>{$account.email}</b></label>
 						</li>
 					{/if}
-					<li>
-						<button
-							class="hover:bg-warning hover:text-black"
-							on:click={() => {
-								goto('/myBundles');
-							}}>My Courses</button
-						>
-					</li>
+					{#if $account && $account.type === 'USER'}
+						<li>
+							<button
+								class="hover:bg-warning hover:text-black"
+								on:click={() => {
+									goto('/myBundles');
+								}}>My Courses</button
+							>
+						</li>
+					{/if}
 					<li>
 						<button
 							class="hover:bg-warning hover:text-black"
