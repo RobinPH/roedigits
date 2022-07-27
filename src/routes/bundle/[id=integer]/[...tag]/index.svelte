@@ -47,6 +47,12 @@
 	});
 </script>
 
+<svelte:head>
+	{#if bundle}
+		<meta name="description" content={bundle.description} />
+	{/if}
+</svelte:head>
+
 {#if bundle}
 	<div class="hero min-h-screen bg-zinc-800 px-4 sm:px-12 md:px-48 text-[#F8F7F9]">
 		<AnimatedElement>
