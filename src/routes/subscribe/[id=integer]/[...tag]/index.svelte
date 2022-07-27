@@ -35,7 +35,7 @@
 
 		if (bundle) {
 			if ($myBundles.find((b) => b.id === bundle.id)) {
-				goto(`/bundle/${bundle.id}`);
+				goto(`/bundle/${bundle.id}/${bundle.name.replace(/[^a-z0-9+]+/gi, '+')}`);
 			}
 
 			for (const course of bundle.courses) {

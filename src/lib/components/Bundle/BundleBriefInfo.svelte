@@ -12,7 +12,7 @@
 	class={`card card-compact w-full bg-base-100 shadow-xl duration-500 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03] hover:cursor-pointer border-8  ${
 		owned ? 'border-warning' : 'border-[#F8F7F9]'
 	}`}
-	href={`/bundle/${bundle.id}`}
+	href={`/bundle/${bundle.id}/${bundle.name.replace(/[^a-z0-9+]+/gi, '+')}`}
 >
 	{#if owned}
 		<span class="absolute top-0 left-0 bg-warning m-2 p-2 text-xs font-bold rounded text-black"

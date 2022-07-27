@@ -26,12 +26,16 @@
 				<div class="text-left">
 					{#if isSingle}
 						<p class="text-xl font-bold">
-							Course: <a href={`/bundle/${bundle.id}`}><b>{bundle.courses[0].name}</b></a>
+							Course: <a href={`/bundle/${bundle.id}/${bundle.name.replace(/[^a-z0-9+]+/gi, '+')}`}
+								><b>{bundle.courses[0].name}</b></a
+							>
 						</p>
 						<p>Single Course Payment</p>
 					{:else}
 						<p class="text-xl font-bold">
-							Bundle: <a href={`/bundle/${bundle.id}`}><b>{bundle.name}</b></a>
+							Bundle: <a href={`/bundle/${bundle.id}/${bundle.name.replace(/[^a-z0-9+]+/gi, '+')}`}
+								><b>{bundle.name}</b></a
+							>
 						</p>
 						<p>Complete Bundle Payment</p>
 					{/if}
@@ -60,7 +64,7 @@
 							});
 
 							if (success) {
-								goto(`/bundle/${bundle.id}`);
+								goto(`/bundle/${bundle.id}/${bundle.name.replace(/[^a-z0-9+]+/gi, '+')}`);
 							}
 						}
 					} catch (e) {

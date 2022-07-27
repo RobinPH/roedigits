@@ -8,7 +8,10 @@
 
 {#if bundle}
 	{#if !owned}
-		<a class="btn btn-warning font-bold" href={`/subscribe/${bundle.id}`}>Enroll Now</a>
+		<a
+			class="btn btn-warning font-bold"
+			href={`/subscribe/${bundle.id}/${bundle.name.replace(/[^a-z0-9+]+/gi, '+')}`}>Enroll Now</a
+		>
 	{:else if bundle.courses.length === 1}
 		<a class="btn btn-warning font-bold" href="#">Start Learning</a>
 	{:else}
