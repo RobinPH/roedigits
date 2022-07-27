@@ -10,7 +10,7 @@
 	{#if !owned}
 		<a class="btn btn-warning font-bold" href={`/subscribe/${bundle.id}`}>Enroll Now</a>
 	{:else if bundle.courses.length === 1}
-		<a class="btn btn-warning font-bold" href={`/course/${bundle.courses[0].id}`}>Start Learning</a>
+		<a class="btn btn-warning font-bold" href="#">Start Learning</a>
 	{:else}
 		<div class="dropdown">
 			<label tabindex="0" class="btn m-1 btn-warning">Start Learning</label>
