@@ -104,7 +104,7 @@
 			<div class="w-10 rounded-full pr-2">
 				<img src="/images/logo.png" alt="roedigits-logo" class="w-auto" />
 			</div>
-			<p>RoeDigits</p>
+			<p class="hidden md:block">RoeDigits</p>
 		</a>
 		<ul class="menu menu-horizontal p-0 space-x-2 hidden lg:block">
 			{#each routes as route (route.key)}
