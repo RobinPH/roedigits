@@ -168,6 +168,11 @@
 					tabindex="0"
 					class="menu menu-compact bg-zinc-900 dropdown-content mt-3 p-2 shadow rounded-box w-52"
 				>
+					{#if $account}
+						<li>
+							<label><b>{$account.email}</b></label>
+						</li>
+					{/if}
 					<li>
 						<button
 							class="hover:bg-warning hover:text-black"
