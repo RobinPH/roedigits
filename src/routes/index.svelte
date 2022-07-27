@@ -52,11 +52,11 @@
 		</div>
 	</div>
 </div> -->
-{#if loaded}
-	<div class="hero min-h-screen bg-[url(/images/bg-3.jpg)]">
-		<div class="hero-overlay bg-opacity-80" />
-		<AnimatedElement>
-			<div class="hero-content text-center text-neutral-content text-[#F8F7F9]">
+<div class="hero min-h-screen bg-[url(/images/bg-3.jpg)]">
+	<div class="hero-overlay bg-opacity-80" />
+	<AnimatedElement>
+		<div class="hero-content text-center text-neutral-content text-[#F8F7F9]">
+			{#if homeTitle && homeDescription}
 				<div class="max-w-md" in:fade={{ duration: 1000 }}>
 					<Editable
 						id={0}
@@ -77,12 +77,14 @@
 					</Editable>
 					<a class="btn btn-warning" href="/register">Register Now</a>
 				</div>
-			</div>
-		</AnimatedElement>
-	</div>
-	<div class="hero min-h-screen bg-zinc-300">
-		<div class="hero-content w-full px-4 text-center">
-			<AnimatedElement>
+			{/if}
+		</div>
+	</AnimatedElement>
+</div>
+<div class="hero min-h-screen bg-zinc-300">
+	<div class="hero-content w-full px-4 text-center">
+		<AnimatedElement>
+			{#if missionTitle && missionDescription}
 				<div in:fly={{ x: -200, duration: 2000 }}>
 					<Editable
 						id={0}
@@ -102,12 +104,14 @@
 						</p>
 					</Editable>
 				</div>
-			</AnimatedElement>
-		</div>
+			{/if}
+		</AnimatedElement>
 	</div>
-	<div class="hero min-h-screen bg-zinc-800">
-		<div class="hero-content w-full px-4 text-center text-[#F8F7F9]">
-			<AnimatedElement>
+</div>
+<div class="hero min-h-screen bg-zinc-800">
+	<div class="hero-content w-full px-4 text-center text-[#F8F7F9]">
+		<AnimatedElement>
+			{#if visionTitle && visionDescription}
 				<div in:fly={{ x: 200, duration: 2000 }}>
 					<Editable
 						id={0}
@@ -127,19 +131,19 @@
 						</p>
 					</Editable>
 				</div>
-			</AnimatedElement>
-		</div>
+			{/if}
+		</AnimatedElement>
 	</div>
-	<div class="hero min-h-screen bg-zinc-300">
-		<div class="hero-content w-full px-4 text-center ">
-			<AnimatedElement
-				><div in:fly={{ y: 200, duration: 2000 }}>
-					<h1 class="text-5xl font-bold">Join {uniqueOwners} Happy Students</h1>
-					<p class="text-lg py-6">
-						<a class="btn btn-warning font-bold" href="/register">REGISTER NOW</a>
-					</p>
-				</div></AnimatedElement
-			>
-		</div>
+</div>
+<div class="hero min-h-screen bg-zinc-300">
+	<div class="hero-content w-full px-4 text-center ">
+		<AnimatedElement
+			><div in:fly={{ y: 200, duration: 2000 }}>
+				<h1 class="text-5xl font-bold">Join {uniqueOwners} Happy Students</h1>
+				<p class="text-lg py-6">
+					<a class="btn btn-warning font-bold" href="/register">REGISTER NOW</a>
+				</p>
+			</div></AnimatedElement
+		>
 	</div>
-{/if}
+</div>
